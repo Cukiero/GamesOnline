@@ -1,0 +1,34 @@
+﻿<template>
+    <div>
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+                <div class="categories-container">
+                    <a class="category-link" @click="changeCategory(0)" v-bind:class="{ 'category-link-active': categoryToShow == 0}">All ({{countAll}})</a>
+                    <a v-for="category in categories" class="category-link" @click="changeCategory(category.id)" v-bind:class="{ 'category-link-active': categoryToShow == category.id}">
+                        {{category.name}} ({{category.count}})
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 games-container">
+                <div v-for="game in games" v-if="categoryToShow == 0 || game.gameCategoryId == categoryToShow" class="white-container game-container">
+                    <img class="game-img" src="../../images/game.jpg" />
+                    <div class="game-info">
+                        <div class="game-info-name">
+                            {{ game.name }}
+                        </div>
+                        <div class="game-info-description">
+                            {{ game.description }}
+                        </div>
+                    </div>
+                    <button class="game-info-play-btn">Play</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<script src="./games.ts"></script>
+<style src="./games.css" />

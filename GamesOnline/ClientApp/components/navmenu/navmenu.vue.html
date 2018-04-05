@@ -1,0 +1,66 @@
+<template>
+    <div class="main-nav">
+        <div class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img class="img-responsive navbar-logo" src="../../images/Gamepad-icon.png"/>
+                <a class="navbar-brand" href="/">OnlineGames</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <router-link to="/" :exact="true">
+                            <span class="glyphicon glyphicon-home"></span> Home
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/games">
+                            <span class="glyphicon glyphicon-play"></span> Games
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/rankings">
+                            <span class="glyphicon glyphicon-globe"></span> Rankings
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/profile">
+                            <span class="glyphicon glyphicon-user"></span> Profile
+                        </router-link>
+                    </li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-auth">
+                    <li v-show="!isAuthenticated">
+                        <router-link to="/authentication/register">
+                            <span class="glyphicon glyphicon-plus"></span> Sign In
+                        </router-link>
+                    </li>
+                    <li v-show="!isAuthenticated">
+                        <router-link to="/authentication/login">
+                            <span class="glyphicon glyphicon-log-in"></span> Log In
+                        </router-link>
+                    </li>
+                    <li v-show="isAuthenticated">
+                        <router-link to="/authentication/account-settings">
+                            <span class="glyphicon glyphicon-cog"></span> Hello, {{username}}!
+                        </router-link>
+                    </li>
+                    <li v-show="isAuthenticated">
+                        <a @click="logout">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style src="./navmenu.css" />
+<script src="./navmenu.ts" ></script>

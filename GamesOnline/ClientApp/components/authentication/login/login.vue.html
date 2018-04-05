@@ -1,0 +1,33 @@
+﻿<template>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-1">
+            <div class="white-container auth-form-container">
+                <h2>Hello</h2>
+                <div class="form-group">
+                    <input type="text"
+                           name="Username"
+                           class="form-control"
+                           placeholder="Enter your username"
+                           v-model="user.Username"
+                           v-validate.disable="'required|alpha_num|min:5'">
+                    <span v-show="errors.has('Username')" class="text-danger">{{ errors.first('Username') }}</span>
+                </div>
+                <div class="form-group">
+                    <input type="password"
+                           name="Password"
+                           class="form-control"
+                           placeholder="Enter your password"
+                           v-model="user.Password"
+                           v-validate.disable="{ required: true, regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d !#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{6,}$/ }">
+                    <span v-show="errors.has('Password')" class="text-danger">Wrong password syntax.</span>
+                </div>
+                <button class="btn btn-primary red-button" @click="submit">Log In</button>
+                <span class="text-danger">{{ message }}</span>
+            </div>
+
+        </div>
+    </div>
+
+</template>
+
+<script src="./login.ts"></script>

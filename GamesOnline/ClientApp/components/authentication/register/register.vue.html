@@ -1,0 +1,54 @@
+﻿<template>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-1">
+            <div class="white-container auth-form-container">
+                <h2>Registration</h2>
+                <div class="alert alert-danger" v-if="error">
+                    <p>{{ error }}</p>
+                </div>
+                <div class="form-group">
+                    <input type="text"
+                           name="Username"
+                           class="form-control"
+                           placeholder="Enter your username"
+                           v-model="user.Username"
+                           v-validate="'required|alpha_num|min:5'">
+                    <span v-show="errors.has('Username')" class="text-danger">{{ errors.first('Username') }}</span>
+                    
+                </div>
+                <div class="form-group">
+                    <input type="text"
+                           name="Email"
+                           class="form-control"
+                           placeholder="Enter your email"
+                           v-model="user.Email"
+                           v-validate="'required|email'">
+                    <span v-show="errors.has('Email')" class="text-danger">{{ errors.first('Email') }}</span>
+                </div>
+                <div class="form-group">
+                    <input type="password"
+                           name="Password"
+                           class="form-control"
+                           placeholder="Enter your password"
+                           v-model="user.Password"
+                           v-validate="{ required: true, regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d !#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{6,}$/}">
+                    <span v-show="errors.has('Password')" class="text-danger">Password must contain at least one letter, one number and min. 6 characters.</span>
+                </div>
+                <div class="form-group">
+                    <input type="password"
+                           name="Password_conf"
+                           class="form-control"
+                           placeholder="Confirm your password"
+                           v-model="password_confirm"
+                           v-validate="{required: true, is: user.Password}">
+                    <span v-show="errors.has('Password_conf')" class="text-danger">Passwords don't match.</span>
+                </div>
+                <button class="btn btn-primary red-button" @click="submit">Register</button>
+                <span class="text-danger">{{ message }}</span>
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<script src="./register.ts"></script>
