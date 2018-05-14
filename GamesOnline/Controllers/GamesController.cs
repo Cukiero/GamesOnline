@@ -42,6 +42,18 @@ namespace GamesOnline.Controllers
         }
 
         [HttpGet]
+        public IActionResult ErykGame()
+        {
+            return View("/Views/Games/erykgame.cshtml");
+        }
+
+        [HttpGet]
+        public IActionResult EmojiRun()
+        {
+            return View("/Views/Games/EmojiRun.cshtml");
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetGameCategories()
         {
             var categories = await _context.GameCategories.OrderByDescending(c => c.Name).ToListAsync();

@@ -8,11 +8,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\AC_RunActiveContent.js" />
+    <Content Remove="wwwroot\EmojiRun.fla" />
+    <Content Remove="wwwroot\EmojiRun.swf" />
+    <Content Remove="wwwroot\games\emojirun\icons\background.jpg" />
+    <Content Remove="wwwroot\games\emojirun\icons\background2.jpg" />
+    <Content Remove="wwwroot\games\emojirun\icons\kemoji.gif" />
+    <Content Remove="wwwroot\games\emojirun\icons\kemoji2.gif" />
+    <Content Remove="wwwroot\games\emojirun\icons\Money_Bag_Emoji_large.gif" />
+    <Content Remove="wwwroot\games\emojirun\icons\Money_Bag_Emoji_large.png" />
+    <Content Remove="wwwroot\games\emojirun\icons\remoji.gif" />
+    <Content Remove="wwwroot\games\emojirun\icons\Smiling_Face_Emoji.gif" />
+    <Content Remove="wwwroot\games\emojirun\icons\Smiling_Face_Emoji.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\components\authentication\account-settings\account-settings.ts" />
     <None Remove="ClientApp\components\authentication\auth.ts" />
     <None Remove="ClientApp\components\authentication\login\login.ts" />
     <None Remove="ClientApp\components\authentication\register\register.ts" />
     <None Remove="ClientApp\components\games\games.ts" />
+    <None Remove="ClientApp\components\gameview\gameview.ts" />
     <None Remove="ClientApp\components\navmenu\navmenu.ts" />
     <None Remove="ClientApp\components\profile\profile.ts" />
     <None Remove="ClientApp\components\rankings\rankings.ts" />
@@ -45,12 +61,33 @@
     <TypeScriptCompile Include="ClientApp\components\authentication\login\login.ts" />
     <TypeScriptCompile Include="ClientApp\components\authentication\register\register.ts" />
     <TypeScriptCompile Include="ClientApp\components\games\games.ts" />
+    <TypeScriptCompile Include="ClientApp\components\gameview\gameview.ts" />
     <TypeScriptCompile Include="ClientApp\components\navmenu\navmenu.ts" />
     <TypeScriptCompile Include="ClientApp\components\profile\profile.ts" />
     <TypeScriptCompile Include="ClientApp\components\rankings\rankings.ts" />
     <TypeScriptCompile Include="ClientApp\models\credentialsModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\gameModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\registrationModel.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Games\EmojiRun.cshtml" />
+    <None Include="wwwroot\games\emojirun\AC_RunActiveContent.js" />
+    <None Include="wwwroot\games\emojirun\EmojiRun.fla" />
+    <None Include="wwwroot\games\emojirun\EmojiRun.swf" />
+    <None Include="wwwroot\games\emojirun\icons\background.jpg" />
+    <None Include="wwwroot\games\emojirun\icons\background2.jpg" />
+    <None Include="wwwroot\games\emojirun\icons\kemoji.gif" />
+    <None Include="wwwroot\games\emojirun\icons\kemoji2.gif" />
+    <None Include="wwwroot\games\emojirun\icons\Money_Bag_Emoji_large.gif" />
+    <None Include="wwwroot\games\emojirun\icons\Money_Bag_Emoji_large.png" />
+    <None Include="wwwroot\games\emojirun\icons\remoji.gif" />
+    <None Include="wwwroot\games\emojirun\icons\Smiling_Face_Emoji.gif" />
+    <None Include="wwwroot\games\emojirun\icons\Smiling_Face_Emoji.png" />
+    <None Include="wwwroot\games\erykgame\.DS_Store" />
+    <None Include="wwwroot\games\erykgame\inline.a66b02a853737160afeb.bundle.js" />
+    <None Include="wwwroot\games\erykgame\main.4075349578c8294e0fe2.bundle.js" />
+    <None Include="wwwroot\games\erykgame\polyfills.f20484b2fa4642e0dca8.bundle.js" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
