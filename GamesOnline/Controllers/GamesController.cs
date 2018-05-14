@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using GamesOnline.Models;
+using GamesOnline.Models.DataModels;
 using GamesOnline.Models.ViewModels;
 using GamesOnline.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -41,17 +42,6 @@ namespace GamesOnline.Controllers
             return NotFound();
         }
 
-        [HttpGet]
-        public IActionResult ErykGame()
-        {
-            return View("/Views/Games/erykgame.cshtml");
-        }
-
-        [HttpGet]
-        public IActionResult EmojiRun()
-        {
-            return View("/Views/Games/EmojiRun.cshtml");
-        }
 
         [HttpGet]
         public async Task<IActionResult> GetGameCategories()
@@ -63,5 +53,7 @@ namespace GamesOnline.Controllers
             }
             return NotFound();
         }
+
+        
     }
 }

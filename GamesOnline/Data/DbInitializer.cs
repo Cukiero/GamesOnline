@@ -73,7 +73,9 @@ namespace GamesOnline.Data
                     Name = "ErykGame",
                     Description = "Cześć, jestem Eryk i zrobiłem grę w Angularze. Możesz w niej walczyć i nabijać levele.",
                     UserViews = 0,
-                    GameType = GameType.Angular,
+                    WindowType = WindowType.Scalable,
+                    Rating = 5.0,
+                    Path = "/games/erykgame/index.html",
                     GameCategory = gameCategories[4]
                 },
                 new Game
@@ -81,7 +83,9 @@ namespace GamesOnline.Data
                     Name = "DamianGame",
                     Description = "Cześć, jestem Damian i robię grę w Javie tylko nie wiem jaką.",
                     UserViews = 0,
-                    GameType = GameType.Java,
+                    WindowType = WindowType.Fixed,
+                    Rating = 5.0,
+                    Path = "/",
                     GameCategory = gameCategories[3]
                 },
                 new Game
@@ -89,7 +93,9 @@ namespace GamesOnline.Data
                     Name = "KacperGame",
                     Description = "Cześć, jestem Kacprem i robię platformówkę w przestarzałym Flashu.",
                     UserViews = 0,
-                    GameType = GameType.Flash,
+                    WindowType = WindowType.Fixed,
+                    Rating = 5.0,
+                    Path = "/games/EmojiRun/EmojiRun.html",
                     GameCategory = gameCategories[6]
                 }
             };

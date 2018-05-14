@@ -11,15 +11,6 @@
     <Content Remove="wwwroot\AC_RunActiveContent.js" />
     <Content Remove="wwwroot\EmojiRun.fla" />
     <Content Remove="wwwroot\EmojiRun.swf" />
-    <Content Remove="wwwroot\games\emojirun\icons\background.jpg" />
-    <Content Remove="wwwroot\games\emojirun\icons\background2.jpg" />
-    <Content Remove="wwwroot\games\emojirun\icons\kemoji.gif" />
-    <Content Remove="wwwroot\games\emojirun\icons\kemoji2.gif" />
-    <Content Remove="wwwroot\games\emojirun\icons\Money_Bag_Emoji_large.gif" />
-    <Content Remove="wwwroot\games\emojirun\icons\Money_Bag_Emoji_large.png" />
-    <Content Remove="wwwroot\games\emojirun\icons\remoji.gif" />
-    <Content Remove="wwwroot\games\emojirun\icons\Smiling_Face_Emoji.gif" />
-    <Content Remove="wwwroot\games\emojirun\icons\Smiling_Face_Emoji.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,19 +62,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Games\EmojiRun.cshtml" />
-    <None Include="wwwroot\games\emojirun\AC_RunActiveContent.js" />
-    <None Include="wwwroot\games\emojirun\EmojiRun.fla" />
-    <None Include="wwwroot\games\emojirun\EmojiRun.swf" />
-    <None Include="wwwroot\games\emojirun\icons\background.jpg" />
-    <None Include="wwwroot\games\emojirun\icons\background2.jpg" />
-    <None Include="wwwroot\games\emojirun\icons\kemoji.gif" />
-    <None Include="wwwroot\games\emojirun\icons\kemoji2.gif" />
-    <None Include="wwwroot\games\emojirun\icons\Money_Bag_Emoji_large.gif" />
-    <None Include="wwwroot\games\emojirun\icons\Money_Bag_Emoji_large.png" />
-    <None Include="wwwroot\games\emojirun\icons\remoji.gif" />
-    <None Include="wwwroot\games\emojirun\icons\Smiling_Face_Emoji.gif" />
-    <None Include="wwwroot\games\emojirun\icons\Smiling_Face_Emoji.png" />
+    <None Include="wwwroot\games\EmojiRun\AC_RunActiveContent.js" />
+    <None Include="wwwroot\games\EmojiRun\EmojiRun.fla" />
+    <None Include="wwwroot\games\EmojiRun\EmojiRun.swf" />
     <None Include="wwwroot\games\erykgame\.DS_Store" />
     <None Include="wwwroot\games\erykgame\inline.a66b02a853737160afeb.bundle.js" />
     <None Include="wwwroot\games\erykgame\main.4075349578c8294e0fe2.bundle.js" />

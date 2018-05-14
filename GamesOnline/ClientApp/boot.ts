@@ -17,7 +17,7 @@ const routes = [
     { path: '/games', component: require('./components/games/games.vue.html') },
     { path: '/rankings', component: require('./components/rankings/rankings.vue.html') },
     { path: '/profile', component: require('./components/profile/profile.vue.html') },
-    { path: '/gameview', component: require('./components/gameview/gameview.vue.html') }
+    { path: '/gameview', name: 'gameview', component: require('./components/gameview/gameview.vue.html') }
 ];
 
 const router = new VueRouter({

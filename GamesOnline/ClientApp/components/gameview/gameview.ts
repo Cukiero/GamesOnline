@@ -3,8 +3,10 @@ import { Component, Prop } from 'vue-property-decorator';
 import axios from 'axios';
 import { Game, GameCategory, GameCategoryExtended } from '../../models/gameModel';
 
+
 @Component
 export default class GameViewComponent extends Vue { 
+
 
     getDocHeight(doc: HTMLDocument) {
         doc = doc || document;
@@ -39,13 +41,20 @@ export default class GameViewComponent extends Vue {
         ifrm.style.visibility = 'visible';
     }
 
-    mounted() {
-        var mapElement = document.getElementById("gameframe") as HTMLIFrameElement;
-        mapElement.style.height = (mapElement.offsetWidth * 9 / 16).toString() + "px";
+    setIframeSize() {
+        var ifrm = document.getElementById("gameframe") as HTMLIFrameElement;
+        var doc = ifrm.contentDocument ? ifrm.contentDocument :
+            ifrm.contentWindow.document;
+        if (this.getDocHeight(doc) < 400) {
+            ifrm.style.width = "80%";
+            ifrm.style.height = (ifrm.offsetWidth * 9 / 16).toString() + "px";
+            window.addEventListener("resize", function (e) {
+                var mapElement = document.getElementById("gameframe") as HTMLIFrameElement;
+                mapElement.style.height = (mapElement.offsetWidth * 9 / 16).toString() + "px";
+            });
+        } else {
+            this.setIframeHeight();
+        }
+    }
 
-        window.addEventListener("resize", function (e) {
-            var mapElement = document.getElementById("gameframe") as HTMLIFrameElement;
-            mapElement.style.height = (mapElement.offsetWidth * 9/16).toString() + "px";
-        });
-    };
 }

@@ -3,7 +3,9 @@
     name: string;
     description: string;
     userViews: number;
-    gameType: number;
+    windowType: number;
+    path: string;
+    rating: number;
     gameCategoryId: number;
     gameCategory: GameCategory;
 }

@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GamesOnline.Models
 {
-    public enum GameType
+    public enum WindowType
     {
-        Angular, Java, Flash
+        Fixed, Scalable
     }
     public class Game
     {
@@ -16,7 +16,9 @@ namespace GamesOnline.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public int UserViews { get; set; }
-        public GameType GameType { get; set; }
+        public WindowType WindowType { get; set; }
+        public string Path { get; set; }
+        public double Rating { get; set; }
         public int GameCategoryId { get; set; }
         public GameCategory GameCategory { get; set; }
     }

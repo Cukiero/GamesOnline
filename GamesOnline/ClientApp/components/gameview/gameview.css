@@ -1,5 +1,6 @@
 ﻿#gameframe {
     display: block;
-    margin: 50px auto;
-    width: 80%;
+    margin: 80px auto;
+    border: none;
+    box-shadow: -60px 0 200px 20px rgb(182, 32, 32), 60px 0 200px 20px rgb(182, 32, 32);
 }
