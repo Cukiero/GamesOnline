@@ -4,8 +4,12 @@ import { authService } from './components/authentication/auth';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
+import { ComponentOptions } from 'vue'
+
 Vue.use(VueRouter);
 Vue.use(Vuex);
+
+let options: ComponentOptions<Vue>;
 
 const routes = [
     { path: '/', component: require('./components/home/home.vue.html') },
@@ -17,7 +21,7 @@ const routes = [
     { path: '/games', component: require('./components/games/games.vue.html') },
     { path: '/rankings', component: require('./components/rankings/rankings.vue.html') },
     { path: '/profile', component: require('./components/profile/profile.vue.html') },
-    { path: '/gameview', name: 'gameview', component: require('./components/gameview/gameview.vue.html') }
+    { path: '/gameview', name:'gameview', component: require('./components/gameview/gameview.vue.html') }
 ];
 
 const router = new VueRouter({

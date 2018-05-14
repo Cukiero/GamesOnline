@@ -54,6 +54,17 @@ namespace GamesOnline.Controllers
             return NotFound();
         }
 
-        
+        [HttpGet]
+        public async Task<IActionResult> GetGame(int id)
+        {
+            var game = await _context.Games.SingleOrDefaultAsync(g => g.Id == id);
+            if(game != null)
+            {
+                return Ok(game);
+            }
+            return NotFound();
+        }
+
+
     }
 }

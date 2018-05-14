@@ -1,6 +1,6 @@
 ﻿<template>
     <div>
-        <iframe id="gameframe" src="/games/erykgame/index.html" @load="setIframeSize()"></iframe>
+        <iframe  id="gameframe" :src="gamepath" @load="setIframeSize()"></iframe>
         <!--@load="setIframeHeight()"-->
     </div>
     

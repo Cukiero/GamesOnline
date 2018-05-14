@@ -13,8 +13,7 @@
       }
     },
     "de-indent": {
-      "version": "1.0.2",
-      "resolved": "https://registry.npmjs.org/de-indent/-/de-indent-1.0.2.tgz",
+      "version": "https://registry.npmjs.org/de-indent/-/de-indent-1.0.2.tgz",
       "integrity": "sha1-sgOOhG3DO6pXlhKNCAS0VbjB4h0="
     },
     "follow-redirects": {
@@ -34,8 +33,7 @@
       }
     },
     "he": {
-      "version": "1.1.1",
-      "resolved": "https://registry.npmjs.org/he/-/he-1.1.1.tgz",
+      "version": "https://registry.npmjs.org/he/-/he-1.1.1.tgz",
       "integrity": "sha1-k0EP0hsAlzUVH4howvJx80J+I/0="
     },
     "is-buffer": {
@@ -47,20 +45,16 @@
       "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g="
     },
     "reflect-metadata": {
-      "version": "0.1.12",
-      "resolved": "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.12.tgz",
-      "integrity": "sha512-n+IyV+nGz3+0q3/Yf1ra12KpCyi001bi4XFxSjbiWWjfqb52iTTtpGXmCCAOWWIAn9KEuFZKGqBERHmrtScZ3A==",
-      "dev": true
+      "version": "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.12.tgz",
+      "integrity": "sha512-n+IyV+nGz3+0q3/Yf1ra12KpCyi001bi4XFxSjbiWWjfqb52iTTtpGXmCCAOWWIAn9KEuFZKGqBERHmrtScZ3A=="
     },
     "vee-validate": {
-      "version": "2.0.6",
-      "resolved": "https://registry.npmjs.org/vee-validate/-/vee-validate-2.0.6.tgz",
+      "version": "https://registry.npmjs.org/vee-validate/-/vee-validate-2.0.6.tgz",
       "integrity": "sha1-CigEbjyA+1ublE2l93ccdAT5Cmo="
     },
     "vue": {
-      "version": "2.5.16",
-      "resolved": "https://registry.npmjs.org/vue/-/vue-2.5.16.tgz",
-      "integrity": "sha512-/ffmsiVuPC8PsWcFkZngdpas19ABm5mh2wA7iDqcltyCTwlgZjHGeJYOXkBMo422iPwIcviOtrTCUpSfXmToLQ=="
+      "version": "https://registry.npmjs.org/vue/-/vue-2.5.16.tgz",
+      "integrity": "sha1-B+23XoQSqu7YceuvqZ9GclhKAIU="
     },
     "vue-class-component": {
       "version": "6.2.0",
@@ -68,30 +62,20 @@
       "integrity": "sha512-U11yVeP5zjPSx4IU7Zas3MLC+Vy9dmufI+uLKLo8YuGQJGOihSYfh/fgNnbjMteN+hz5axjG6iC6ybMo6vGYnA=="
     },
     "vue-property-decorator": {
-      "version": "5.3.0",
-      "resolved": "https://registry.npmjs.org/vue-property-decorator/-/vue-property-decorator-5.3.0.tgz",
-      "integrity": "sha1-8PodDv08Vp/yAJ/pVGzS+zPtf0M=",
-      "dev": true,
+      "version": "6.0.0",
+      "resolved": "https://registry.npmjs.org/vue-property-decorator/-/vue-property-decorator-6.0.0.tgz",
+      "integrity": "sha1-u2UbKTVC4x2w0k829LAlDvCNhRU=",
       "requires": {
-        "reflect-metadata": "0.1.12",
-        "vue-class-component": "5.0.2"
-      },
-      "dependencies": {
-        "vue-class-component": {
-          "version": "5.0.2",
-          "resolved": "https://registry.npmjs.org/vue-class-component/-/vue-class-component-5.0.2.tgz",
-          "integrity": "sha512-wgI/SKRozqADIeMGN16PXiHBa/cnRD7JcuYt7P4JHcMIMc2BdUw02pQ+EQmsui0tN2kRVZGwZ8h4Yb2Vbf4w0w==",
-          "dev": true
-        }
+        "reflect-metadata": "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.12.tgz",
+        "vue-class-component": "6.2.0"
       }
     },
     "vue-template-compiler": {
-      "version": "2.5.16",
-      "resolved": "https://registry.npmjs.org/vue-template-compiler/-/vue-template-compiler-2.5.16.tgz",
-      "integrity": "sha512-ZbuhCcF/hTYmldoUOVcu2fcbeSAZnfzwDskGduOrnjBiIWHgELAd+R8nAtX80aZkceWDKGQ6N9/0/EUpt+l22A==",
+      "version": "https://registry.npmjs.org/vue-template-compiler/-/vue-template-compiler-2.5.16.tgz",
+      "integrity": "sha1-k7SFcOVscgzfPwUcwVKHwm+9BMs=",
       "requires": {
-        "de-indent": "1.0.2",
-        "he": "1.1.1"
+        "de-indent": "https://registry.npmjs.org/de-indent/-/de-indent-1.0.2.tgz",
+        "he": "https://registry.npmjs.org/he/-/he-1.1.1.tgz"
       }
     },
     "vuex": {

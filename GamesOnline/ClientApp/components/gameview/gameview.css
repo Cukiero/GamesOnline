@@ -1,6 +1,7 @@
 ﻿#gameframe {
     display: block;
     margin: 80px auto;
-    border: none;
-    box-shadow: -60px 0 200px 20px rgb(182, 32, 32), 60px 0 200px 20px rgb(182, 32, 32);
+    border: 5px solid #b62020;
+    border-radius: 5px;
+    box-shadow: -40px 0 200px 10px rgb(182, 32, 32), 40px 0 200px 10px rgb(182, 32, 32);
 }

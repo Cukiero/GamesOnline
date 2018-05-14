@@ -76,6 +76,7 @@ namespace GamesOnline.Data
                     WindowType = WindowType.Scalable,
                     Rating = 5.0,
                     Path = "/games/erykgame/index.html",
+                    ImagePath = "/games/erykgame/view.png",
                     GameCategory = gameCategories[4]
                 },
                 new Game
@@ -86,6 +87,7 @@ namespace GamesOnline.Data
                     WindowType = WindowType.Fixed,
                     Rating = 5.0,
                     Path = "/",
+                    ImagePath = "/games/example.jpg",
                     GameCategory = gameCategories[3]
                 },
                 new Game
@@ -96,6 +98,7 @@ namespace GamesOnline.Data
                     WindowType = WindowType.Fixed,
                     Rating = 5.0,
                     Path = "/games/EmojiRun/EmojiRun.html",
+                    ImagePath = "/games/EmojiRun/view.png",
                     GameCategory = gameCategories[6]
                 }
             };

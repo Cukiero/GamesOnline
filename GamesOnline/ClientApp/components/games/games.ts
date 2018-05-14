@@ -62,7 +62,10 @@ export default class GamesComponent extends Vue {
     changeCategory(id: number) {
         this.categoryToShow = id;
     }
-    
+
+    roundHalf(num: number): number {
+        return Math.round(num * 2) / 2;
+    }
 
     mounted() {
         var p1 = this.getCategories();

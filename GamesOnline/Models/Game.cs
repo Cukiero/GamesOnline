@@ -18,6 +18,7 @@ namespace GamesOnline.Models
         public int UserViews { get; set; }
         public WindowType WindowType { get; set; }
         public string Path { get; set; }
+        public string ImagePath { get; set; }
         public double Rating { get; set; }
         public int GameCategoryId { get; set; }
         public GameCategory GameCategory { get; set; }

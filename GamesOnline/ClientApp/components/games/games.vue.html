@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12 games-container">
                 <div v-for="game in games" v-if="categoryToShow == 0 || game.gameCategoryId == categoryToShow" class="white-container game-container">
-                    <img class="game-img" src="../../images/game.jpg" />
+                    <img class="game-img" :src="game.imagePath" />
                     <div class="game-info">
                         <div class="game-info-name">
                             {{ game.name }}
@@ -21,8 +21,14 @@
                         <div class="game-info-description">
                             {{ game.description }}
                         </div>
+                        
                     </div>
-                    <router-link :to="{ name: 'gameview'}" tag="button" class="game-info-play-btn">Play</router-link>
+                    <div class="game-rating">
+                        <img class="game-star-rating" :src="'/media/stars/'+roundHalf(game.rating)*2+'.png'" />
+                        
+                        <div class="game-number-rating">{{game.rating}} / 5</div>
+                    </div>
+                    <router-link :to="{ name:'gameview', params:{gameid: game.id}}" tag="button" class="game-info-play-btn">Play</router-link>
                 </div>
             </div>
         </div>

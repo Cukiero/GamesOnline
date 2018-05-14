@@ -5,6 +5,7 @@
     userViews: number;
     windowType: number;
     path: string;
+    imagePath: string;
     rating: number;
     gameCategoryId: number;
     gameCategory: GameCategory;
