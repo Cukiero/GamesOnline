@@ -70,33 +70,33 @@ namespace GamesOnline.Data
             {
                 new Game
                 {
-                    Name = "ErykGame",
-                    Description = "Cześć, jestem Eryk i zrobiłem grę w Angularze. Możesz w niej walczyć i nabijać levele.",
+                    Name = "Er-pg",
+                    Description = "Stwórz własną postać i walcz w świecie fantasy.",
                     UserViews = 0,
                     WindowType = WindowType.Scalable,
-                    Rating = 5.0,
+                    Rating = 4.6,
                     Path = "/games/erykgame/index.html",
                     ImagePath = "/games/erykgame/view.png",
                     GameCategory = gameCategories[4]
                 },
                 new Game
                 {
-                    Name = "DamianGame",
-                    Description = "Cześć, jestem Damian i robię grę w Javie tylko nie wiem jaką.",
+                    Name = "Arkanoid",
+                    Description = "Odbijaj kulke, żeby zbić wszystkie klocki.",
                     UserViews = 0,
                     WindowType = WindowType.Fixed,
-                    Rating = 5.0,
-                    Path = "/",
-                    ImagePath = "/games/example.jpg",
+                    Rating = 3.7,
+                    Path = "/games/arkanoid/index.html",
+                    ImagePath = "/games/arkanoid/view.png",
                     GameCategory = gameCategories[3]
                 },
                 new Game
                 {
-                    Name = "KacperGame",
-                    Description = "Cześć, jestem Kacprem i robię platformówkę w przestarzałym Flashu.",
+                    Name = "Emoji Run",
+                    Description = "Steruj swoją emotikonką i spróbuj przejść jak najdalej.",
                     UserViews = 0,
                     WindowType = WindowType.Fixed,
-                    Rating = 5.0,
+                    Rating = 4.1,
                     Path = "/games/EmojiRun/EmojiRun.html",
                     ImagePath = "/games/EmojiRun/view.png",
                     GameCategory = gameCategories[6]

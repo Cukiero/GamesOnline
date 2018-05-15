@@ -1,0 +1,19 @@
+﻿.home-container {
+    margin-top: 40px;
+}
+
+.welcome-text {
+    display: block;
+    margin: auto;
+    max-height: 60px;
+}
+
+.sitename-text {
+    display: block;
+    margin: auto;
+    max-height: 150px;
+}
+
+.home-description {
+    margin-left: 10%;
+}

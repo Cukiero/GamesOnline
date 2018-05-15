@@ -26,8 +26,10 @@ namespace GamesOnline.Controllers
     public class GamesController : Controller
     {
         private readonly AppDbContext _context;
-        public GamesController(AppDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public GamesController(AppDbContext context, UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 
@@ -63,6 +65,49 @@ namespace GamesOnline.Controllers
                 return Ok(game);
             }
             return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveScore([FromBody] GameScoreModel gameScoreModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if(user == null)
+                {
+                    return Unauthorized();
+                }
+                var userHighScore = await _context.GameHighScores.SingleOrDefaultAsync(h => h.ApplicationUserId == user.Id && h.GameId == gameScoreModel.GameId);
+                var userScore = new GameScore()
+                {
+                    ApplicationUserId = user.Id,
+                    GameId = gameScoreModel.GameId,
+                    Score = gameScoreModel.Score,
+                    Date = DateTime.Now,
+                    IsHighScore = false
+                };
+                int isHighScore = 0;
+                if(userHighScore != null)
+                {
+                    if (gameScoreModel.Score > userHighScore.Score)
+                    {
+                        userScore.IsHighScore = true;
+                        userHighScore.Score = gameScoreModel.Score;
+                        userHighScore.Date = DateTime.Now;
+
+                        _context.GameScores.Add(userScore);
+                        await _context.SaveChangesAsync();
+                        isHighScore = 1;
+                        return Ok(isHighScore);
+                    }
+                }
+                _context.GameScores.Add(userScore);
+                await _context.SaveChangesAsync();
+                return Ok(isHighScore);
+            }
+            return BadRequest(ModelState);
+            
+
         }
 
 

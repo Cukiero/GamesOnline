@@ -62,6 +62,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\games\arkanoid\dist\breakout.min.js" />
+    <None Include="wwwroot\games\arkanoid\src\bundle.js" />
+    <None Include="wwwroot\games\arkanoid\src\bundle.js.map" />
     <None Include="wwwroot\games\EmojiRun\AC_RunActiveContent.js" />
     <None Include="wwwroot\games\EmojiRun\EmojiRun.fla" />
     <None Include="wwwroot\games\EmojiRun\EmojiRun.swf" />
