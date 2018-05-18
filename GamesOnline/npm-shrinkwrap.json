@@ -1596,7 +1596,7 @@
     "fsevents": {
       "version": "1.2.4",
       "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-1.2.4.tgz",
-      "integrity": "sha512-z8H8/diyk76B7q5wg+Ud0+CqzcAF3mBBI/bA5ne5zrRUUIvNkJY//D3BqyH571KuAC4Nr7Rw7CjWX4r0y9DvNg==",
+      "integrity": "sha1-9B3LGvJYKvNpLaNvxVy9jhBBxCY=",
       "dev": true,
       "optional": true,
       "requires": {
@@ -2930,7 +2930,7 @@
     "nan": {
       "version": "2.10.0",
       "resolved": "https://registry.npmjs.org/nan/-/nan-2.10.0.tgz",
-      "integrity": "sha512-bAdJv7fBLhWC+/Bls0Oza+mvTaNQtP+1RyhhhvD95pgUJz6XM5IzgmxOkItJ9tkoCiplvAnXI1tNmmUD/eScyA==",
+      "integrity": "sha1-ltDNYQ69WNS03pzAxoKM2pnHVI8=",
       "dev": true,
       "optional": true
     },
@@ -4877,8 +4877,7 @@
     "vue-router": {
       "version": "3.0.1",
       "resolved": "https://registry.npmjs.org/vue-router/-/vue-router-3.0.1.tgz",
-      "integrity": "sha1-2bBa2cdCC6D2JtZQDWk+YAkswek=",
-      "dev": true
+      "integrity": "sha1-2bBa2cdCC6D2JtZQDWk+YAkswek="
     },
     "vue-style-loader": {
       "version": "2.0.5",

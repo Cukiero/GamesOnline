@@ -20,6 +20,7 @@
     <None Remove="ClientApp\components\authentication\register\register.ts" />
     <None Remove="ClientApp\components\games\games.ts" />
     <None Remove="ClientApp\components\gameview\gameview.ts" />
+    <None Remove="ClientApp\components\game_ratings\game_ratings.ts" />
     <None Remove="ClientApp\components\navmenu\navmenu.ts" />
     <None Remove="ClientApp\components\profile\profile.ts" />
     <None Remove="ClientApp\components\rankings\rankings.ts" />
@@ -53,6 +54,7 @@
     <TypeScriptCompile Include="ClientApp\components\authentication\register\register.ts" />
     <TypeScriptCompile Include="ClientApp\components\games\games.ts" />
     <TypeScriptCompile Include="ClientApp\components\gameview\gameview.ts" />
+    <TypeScriptCompile Include="ClientApp\components\game_ratings\game_ratings.ts" />
     <TypeScriptCompile Include="ClientApp\components\navmenu\navmenu.ts" />
     <TypeScriptCompile Include="ClientApp\components\profile\profile.ts" />
     <TypeScriptCompile Include="ClientApp\components\rankings\rankings.ts" />

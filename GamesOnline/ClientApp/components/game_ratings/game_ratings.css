@@ -1,0 +1,48 @@
+﻿.ratings-section {
+    margin: auto;
+    max-width: 800px;
+}
+
+.ratings-hr {
+    width: 95%;
+    border: solid 1.5px #b62020;
+}
+
+.user-ratings-section {
+    margin-top: 30px;
+}
+
+#add-rating-stars-container {
+    height: 35px;
+    width: 175px;
+    position: relative;
+}
+
+.add-rate{
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+}
+
+#add-rate-1 {
+    left: 0;
+}
+
+#add-rate-2 {
+    left: 35px;
+}
+
+#add-rate-3 {
+    left: 70px;
+}
+
+#add-rate-4 {
+    left: 105px;
+}
+
+#add-rate-5 {
+    left: 140px;
+}
+

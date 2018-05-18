@@ -3,7 +3,11 @@ import { Component, Prop } from 'vue-property-decorator';
 import { Game } from '../../models/gameModel';
 import axios from 'axios';
 
-@Component
+@Component({
+    components: {
+        game_ratings: require('../game_ratings/game_ratings.vue.html')
+    }
+})
 export default class GameViewComponent extends Vue { 
 
     gamepath: string = "";
