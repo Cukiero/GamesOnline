@@ -37,7 +37,7 @@ namespace GamesOnline.Controllers
         public async Task<IActionResult> GetGames()
         {
             var games = await _context.Games.OrderByDescending(g => g.UserViews).Include(gr => gr.GameCategory).ToListAsync();
-            if(games != null)
+            if (games != null)
             {
                 return Ok(games);
             }
@@ -50,7 +50,7 @@ namespace GamesOnline.Controllers
         {
             var categories = await _context.GameCategories.OrderByDescending(c => c.Name).ToListAsync();
             if (categories != null)
-            {  
+            {
                 return Ok(categories);
             }
             return NotFound();
@@ -60,7 +60,7 @@ namespace GamesOnline.Controllers
         public async Task<IActionResult> GetGame(int id)
         {
             var game = await _context.Games.SingleOrDefaultAsync(g => g.Id == id);
-            if(game != null)
+            if (game != null)
             {
                 return Ok(game);
             }
@@ -73,7 +73,7 @@ namespace GamesOnline.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
-                if(user == null)
+                if (user == null)
                 {
                     return Unauthorized();
                 }
@@ -87,7 +87,7 @@ namespace GamesOnline.Controllers
                     IsHighScore = false
                 };
                 int isHighScore = 0;
-                if(userHighScore != null)
+                if (userHighScore != null)
                 {
                     if (gameScoreModel.Score > userHighScore.Score)
                     {
@@ -106,10 +106,89 @@ namespace GamesOnline.Controllers
                 return Ok(isHighScore);
             }
             return BadRequest(ModelState);
-            
+
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddGameRating([FromBody] GameRatingModel gameRatingModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return Unauthorized();
+                }
+                var game = await _context.Games.SingleOrDefaultAsync(g => g.Id == gameRatingModel.GameId);
+                int[] possible_ratings = new int[] { 1, 2, 3, 4, 5 };
 
+                if (game != null && possible_ratings.Contains(gameRatingModel.Rating))
+                {
+                    GameRating gameRating = new GameRating()
+                    {
+                        GameId = gameRatingModel.GameId,
+                        Date = DateTime.Now,
+                        Comment = gameRatingModel.Comment,
+                        Rating = gameRatingModel.Rating,
+                        ApplicationUserId = user.Id,
+                        ApplicationUserName = user.UserName
+                    };
+                    _context.GameRatings.Add(gameRating);
+                    await _context.SaveChangesAsync();
+
+                    var game_ratings = await _context.GameRatings.Where(r => r.GameId == gameRatingModel.GameId).ToListAsync();
+                    if(game_ratings != null)
+                    {
+                        double sumof_ratings = 0;
+                        foreach(var rating in game_ratings)
+                        {
+                            sumof_ratings += rating.Rating;
+                        }
+                        double avg_rating = sumof_ratings / (double)game_ratings.Count();
+                        avg_rating = Math.Round(avg_rating, 1);
+                        game.Rating = avg_rating;
+                        await _context.SaveChangesAsync();
+                    }
+                    return Ok();
+                }
+                return BadRequest();
+            }
+            return BadRequest(ModelState);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteGameRating(int ratingid)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                var rating = await _context.GameRatings.SingleOrDefaultAsync(r => r.Id == ratingid);
+                if(rating != null)
+                {
+                    if (rating.ApplicationUserId == user.Id)
+                    {
+                        _context.GameRatings.Remove(rating);
+                        await _context.SaveChangesAsync();
+                        return Ok();
+                    }
+                    return Unauthorized();
+                }
+                return BadRequest();
+            }
+            return Unauthorized();
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetGameRatings(int gameId)
+        {
+            var gameRatings = await _context.GameRatings.Where(g => g.GameId == gameId).OrderByDescending(d => d.Date).ToListAsync();
+            if(gameRatings != null)
+            {
+                return Ok(gameRatings);
+            }
+            return NoContent();
+        }
     }
 }

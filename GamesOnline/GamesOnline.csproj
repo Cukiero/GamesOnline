@@ -26,6 +26,7 @@
     <None Remove="ClientApp\components\rankings\rankings.ts" />
     <None Remove="ClientApp\models\credentialsModel.ts" />
     <None Remove="ClientApp\models\gameModel.ts" />
+    <None Remove="ClientApp\models\gameRatingModel.ts" />
     <None Remove="ClientApp\models\registrationModel.ts" />
   </ItemGroup>
 
@@ -60,6 +61,7 @@
     <TypeScriptCompile Include="ClientApp\components\rankings\rankings.ts" />
     <TypeScriptCompile Include="ClientApp\models\credentialsModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\gameModel.ts" />
+    <TypeScriptCompile Include="ClientApp\models\gameRatingModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\registrationModel.ts" />
   </ItemGroup>
 

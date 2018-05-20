@@ -74,7 +74,7 @@ namespace GamesOnline.Data
                     Description = "Stwórz własną postać i walcz w świecie fantasy.",
                     UserViews = 0,
                     WindowType = WindowType.Scalable,
-                    Rating = 4.6,
+                    Rating = 0,
                     Path = "/games/erykgame/index.html",
                     ImagePath = "/games/erykgame/view.png",
                     GameCategory = gameCategories[4]
@@ -85,7 +85,7 @@ namespace GamesOnline.Data
                     Description = "Odbijaj kulke, żeby zbić wszystkie klocki.",
                     UserViews = 0,
                     WindowType = WindowType.Fixed,
-                    Rating = 3.7,
+                    Rating = 0,
                     Path = "/games/arkanoid/index.html",
                     ImagePath = "/games/arkanoid/view.png",
                     GameCategory = gameCategories[3]
@@ -96,7 +96,7 @@ namespace GamesOnline.Data
                     Description = "Steruj swoją emotikonką i spróbuj przejść jak najdalej.",
                     UserViews = 0,
                     WindowType = WindowType.Fixed,
-                    Rating = 4.1,
+                    Rating = 0,
                     Path = "/games/EmojiRun/EmojiRun.html",
                     ImagePath = "/games/EmojiRun/view.png",
                     GameCategory = gameCategories[6]

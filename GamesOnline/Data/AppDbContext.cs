@@ -20,5 +20,6 @@ namespace GamesOnline.Data
         public DbSet<GameCategory> GameCategories { get; set; }
         public DbSet<GameScore> GameScores { get; set; }
         public DbSet<GameHighScore> GameHighScores { get; set; }
+        public DbSet<GameRating> GameRatings { get; set; }
     }
 }

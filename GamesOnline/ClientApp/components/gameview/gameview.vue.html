@@ -2,7 +2,7 @@
     <div>
         <iframe  id="gameframe" :src="gamepath" @load="setIframeSize()"></iframe>
         <!--@load="setIframeHeight()"-->
-        <div><game_ratings></game_ratings></div>
+        <div><game_ratings v-if="gameid != 0" :gameid="gameid"></game_ratings></div>
     </div>
     
 </template>

@@ -1,6 +1,7 @@
 ﻿.ratings-section {
     margin: auto;
     max-width: 800px;
+    min-width: 350px;
 }
 
 .ratings-hr {
@@ -14,11 +15,45 @@
 
 #add-rating-stars-container {
     height: 35px;
-    width: 175px;
+    min-width: 265px;
     position: relative;
+    margin-bottom: 5px;
 }
 
-.add-rate{
+#rating-stars {
+    height: 35px;
+    width: 175px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#post-rating {
+    width: 85px;
+    height: 35px;
+    position:absolute;
+    background-color: #b62020;
+    color: white;
+    top: 0;
+    right: 0;
+}
+
+#rating-comment {
+    resize: none;
+}
+
+.remove-rating-link {
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 10px;
+    text-align: right;
+}
+    .remove-rating-link:hover {
+        color: darkred;
+    }
+
+.add-rate {
     height: 35px;
     width: 35px;
     position: absolute;

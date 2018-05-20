@@ -37,7 +37,8 @@ router.beforeEach((to, from, next) => {
 const store = new Vuex.Store({
     state: {
         isAuthenticated: false,
-        username: ""
+        username: "",
+        userid: ""
     },
     getters: {
         isAuthenticated: state => state.isAuthenticated,

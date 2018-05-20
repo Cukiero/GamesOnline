@@ -15,7 +15,7 @@ export default class GameViewComponent extends Vue {
     game = {} as Game;
 
     mounted() {
-        this.gameid = +this.$route.params.gameid
+        this.gameid = +this.$route.params.gameid;
         this.getGame(this.gameid).then(result => {
             this.gamepath = this.game.path;
         })
