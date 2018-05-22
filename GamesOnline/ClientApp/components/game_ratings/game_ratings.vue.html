@@ -2,7 +2,7 @@
     <div>
         <hr class="ratings-hr" />
         <div class="ratings-section">
-            <div class="add-rating-section">
+            <div v-if="isAuthenticated == true" class="add-rating-section">
                 <div class="media">
                     <div class="media-left">
                         <img src="/media/avatar-example.jpg" class="media-object" style="width:80px">
@@ -23,6 +23,7 @@
                     </div>
                 </div>
             </div>
+            <div v-else="">You need to be logged in to post a rating.</div>
             <div class="user-ratings-section">
                 <div v-for="rating in gameRatings" class="media">
                     <div class="media-left">

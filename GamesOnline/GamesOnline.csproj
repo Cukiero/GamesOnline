@@ -72,9 +72,8 @@
     <None Include="wwwroot\games\EmojiRun\AC_RunActiveContent.js" />
     <None Include="wwwroot\games\EmojiRun\EmojiRun.fla" />
     <None Include="wwwroot\games\EmojiRun\EmojiRun.swf" />
-    <None Include="wwwroot\games\erykgame\.DS_Store" />
-    <None Include="wwwroot\games\erykgame\inline.a66b02a853737160afeb.bundle.js" />
-    <None Include="wwwroot\games\erykgame\main.4075349578c8294e0fe2.bundle.js" />
+    <None Include="wwwroot\games\erykgame\inline.3d4a934ba9526037e96f.bundle.js" />
+    <None Include="wwwroot\games\erykgame\main.5446671edf8ccbea7e5b.bundle.js" />
     <None Include="wwwroot\games\erykgame\polyfills.f20484b2fa4642e0dca8.bundle.js" />
   </ItemGroup>
 

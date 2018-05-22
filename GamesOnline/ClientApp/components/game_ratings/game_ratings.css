@@ -1,7 +1,7 @@
 ﻿.ratings-section {
     margin: auto;
     max-width: 800px;
-    min-width: 350px;
+    min-width: 360px;
 }
 
 .ratings-hr {
@@ -11,6 +11,7 @@
 
 .user-ratings-section {
     margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 #add-rating-stars-container {

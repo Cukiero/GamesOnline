@@ -6,17 +6,19 @@ import { mapGetters } from 'vuex';
 import axios from 'axios';
 import moment from 'moment';
 
-Vue.filter('formatDate', function (value: Date) {
-    if (value) {
-        return moment(String(value)).format('DD/MM/YYYY hh:mm');
-    }
-})
 
 @Component({
     computed: mapGetters({
         isAuthenticated: 'isAuthenticated',
         username: 'getUsername'
-    })
+    }),
+    filters: {
+        formatDate (value: Date) {
+            if (value) {
+                return moment(String(value)).format('DD/MM/YYYY HH:mm');
+            }
+        }
+    }
 })
 export default class GameRatingsComponent extends Vue {
 
@@ -34,8 +36,10 @@ export default class GameRatingsComponent extends Vue {
             (function () {
                 var k = i;
                 var starObject = document.getElementById("add-rate-" + i) as HTMLDivElement;
-                starObject.onclick = function () {
-                    self.currentRating = k;
+                if (starObject != null) {
+                    starObject.onclick = function () {
+                        self.currentRating = k;
+                    }
                 }
             }());
         }

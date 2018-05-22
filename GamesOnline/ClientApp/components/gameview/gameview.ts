@@ -76,9 +76,10 @@ export default class GameViewComponent extends Vue {
             if (this.game.windowType == 0) {
                 this.setIframeHeight();
             } else {
+                var ifrmWindow = ifrm.contentWindow as Window;
                 ifrm.style.width = "80%";
                 ifrm.style.height = (ifrm.offsetWidth * 9 / 16).toString() + "px";
-                ifrm.addEventListener("resize", function (e) {
+                ifrmWindow.addEventListener("resize", function () {
                     var mapElement = document.getElementById("gameframe") as HTMLIFrameElement;
                     mapElement.style.height = (mapElement.offsetWidth * 9 / 16).toString() + "px";
                 });

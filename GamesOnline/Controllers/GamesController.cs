@@ -101,6 +101,22 @@ namespace GamesOnline.Controllers
                         return Ok(isHighScore);
                     }
                 }
+                else
+                {
+                    var newHighScore = new GameHighScore()
+                    {
+                        ApplicationUserId = user.Id,
+                        GameId = gameScoreModel.GameId,
+                        Score = userScore.Score,
+                        Date = DateTime.Now
+                    };
+                    userScore.IsHighScore = true;
+                    _context.GameScores.Add(userScore);
+                    _context.GameHighScores.Add(newHighScore);
+                    await _context.SaveChangesAsync();
+                    isHighScore = 1;
+                    return Ok(isHighScore);
+                }
                 _context.GameScores.Add(userScore);
                 await _context.SaveChangesAsync();
                 return Ok(isHighScore);
