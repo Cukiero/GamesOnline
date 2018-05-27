@@ -19,13 +19,14 @@
     z-index: 1;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     /* On small screens, convert the nav menu to a vertical sidebar */
     .main-nav {
         height: 100%;
         min-height: 440px;
         width: calc(18.33% - 20px);
     }
+
         .main-nav .navbar {
             border-radius: 0px;
             border-width: 0px;
@@ -33,14 +34,16 @@
             position: relative;
             background-color: #b62020;
         }
+
         .main-nav .navbar-header {
             float: none;
-            
         }
+
             .main-nav .navbar-header a {
                 color: white;
                 display: none;
             }
+
             .main-nav .navbar-header .navbar-logo {
                 width: 60%;
                 margin: auto;
@@ -52,32 +55,38 @@
             border-top: 3px solid #d82929;
             padding: 0px;
         }
+
         .main-nav .navbar ul {
             float: none;
         }
+
             .main-nav .navbar ul.navbar-auth {
                 position: absolute;
                 bottom: 0;
                 width: 100%;
             }
+
         .main-nav .navbar li {
             float: none;
             font-size: 15px;
             margin: 6px;
-            
         }
+
             .main-nav .navbar li a {
                 padding: 10px 16px;
                 border-radius: 4px;
                 color: white;
                 cursor: pointer;
             }
+
                 .main-nav .navbar li a:hover, .main-nav .navbar li a:focus {
                     background-color: #cb2424;
                 }
+
         .main-nav li a.router-link-active, .main-nav li a.router-link-active:hover, .main-nav li a.router-link-active:focus {
             background-color: #d82929;
         }
+
         .main-nav .navbar a {
             /* If a menu item's text is too long, truncate it */
             width: 100%;
@@ -116,7 +125,7 @@
     background-color: #d82929;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 992px) {
     .main-nav .navbar-header .navbar-logo {
         display: none;
     }

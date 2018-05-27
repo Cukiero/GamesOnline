@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180527105758_avatar-dft.cs" />
+    <Compile Remove="Migrations\20180527105758_avatar-dft.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\AC_RunActiveContent.js" />
     <Content Remove="wwwroot\EmojiRun.fla" />
     <Content Remove="wwwroot\EmojiRun.swf" />
@@ -28,6 +33,7 @@
     <None Remove="ClientApp\models\gameModel.ts" />
     <None Remove="ClientApp\models\gameRatingModel.ts" />
     <None Remove="ClientApp\models\registrationModel.ts" />
+    <None Remove="ClientApp\models\scoreModels.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,6 +69,7 @@
     <TypeScriptCompile Include="ClientApp\models\gameModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\gameRatingModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\registrationModel.ts" />
+    <TypeScriptCompile Include="ClientApp\models\scoreModels.ts" />
   </ItemGroup>
 
   <ItemGroup>

@@ -43,7 +43,8 @@ namespace GamesOnline.Controllers
                 var user = new ApplicationUser
                 {
                     UserName = model.Username,
-                    Email = model.Email
+                    Email = model.Email,
+                    AvatarPath = "/media/avatar-example.jpg"
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
 

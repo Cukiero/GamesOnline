@@ -1,9 +1,95 @@
 ﻿<template>
-    <div class="row">
-        <div class="col-sm-12">
+    <div>
+        <div class="row" id="ranking-page-container">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-container" id="game-chooser-container">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img class="img-responsive chosen-game-img" :src="chosenGame.imagePath" />
+                                </div>
+                                <div class="col-xs-5">
+                                    <div class="chosen-game-name">{{chosenGame.name}}</div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="dropdown">
+                                        <button @click="myFunction()" class="dropbtn">Choose game</button>
+                                        <div id="myDropdown" class="dropdown-content">
+                                            <input type="text" placeholder="Search.." id="myInput" @keyup="filterFunction()">
+                                            <div class="game-chooser-list">
+                                                <a v-for="game in games" @click="chooseGame(game.id)">{{game.name}}</a>
+                                            </div>
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="row ranks-row">
+                    <div class="col-sm-6">
+                        <div class="white-container" id="global-rank-container">
+                            <div class="rankings-container-name">
+                                <span class="glyphicon glyphicon-globe"></span>  Global
+                            </div>
+                            <div class="rank-scores-container">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Username</th>
+                                            <th>Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(highScore, index) in gameHighScores">
+                                            <td>{{index+1}}</td>
+                                            <td>{{highScore.user.userName}}</td>
+                                            <td>{{highScore.score}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="white-container" id="friends-rank-container">
+                            <div class="rankings-container-name">
+                                <span class="glyphicon glyphicon-user"></span> Friends
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="white-container" id="activities-container">
+                    <div class="rankings-container-name">
+                        <span class="glyphicon glyphicon-list"></span> Latest scores
+                    </div>
+                    <div class="latest-scores">
+                        <div v-for="score in userScores" class="row score-row">
+                            <div class="col-xs-3 score-image-col">
+                                <img class="img-responsive img-rounded score-image" :src="score.game.imagePath" />
+                            </div>
+                            <div v-if="score.isHighScore == 0" class="col-xs-9 score-description">
+                                You scored <b>{{score.score}}</b> points in <b>{{score.game.name}}</b> on <small>{{ score.date | formatDate }}</small>
+                            </div>
+                            <div v-else="" class="col-xs-9 score-description">
+                                You reached a new <b>HighScore</b> of <b>{{score.score}}</b> points in <b>{{score.game.name}}</b> on <small>{{ score.date | formatDate }}</small>!
+                            </div>
+                            <div class="col-xs-12">
+                                <hr class="latest-scores-hr" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        
     </div>
 </template>
 
 <script src="./rankings.ts"></script>
+<style src="./rankings.css"></style>

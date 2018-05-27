@@ -1,0 +1,151 @@
+﻿#ranking-page-container{
+    margin: 50px;
+    margin-top: 100px;
+}
+@media (max-width: 1200px) {
+    #ranking-page-container {
+        margin: 5px;
+        margin-top: 50px;
+    }
+}
+
+#game-chooser-container {
+    height: 100px;
+    overflow:visible;
+}
+
+.ranks-row {
+    margin-top: 20px;
+}
+
+#global-rank-container {
+    height: 650px;
+}
+
+#friends-rank-container {
+    height: 650px;
+}
+
+#activities-container {
+    height: 770px;
+}
+
+.rankings-container-name {
+    background-color: #b62020;
+    margin: -15px -15px 0 -15px;
+    height: 80px;
+    z-index: -1;
+    padding: 15px;
+    color: white;
+    font-size: 28px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.latest-scores{
+    padding-top: 5px;
+}
+
+.score-image {
+}
+.score-image-col{
+    padding-right: 0;
+    padding-left: 5px;
+}
+.score-row {
+    margin-bottom: 5px;
+}
+
+.latest-scores-hr{
+    margin-bottom: 3px;
+    margin-top: 5px;
+}
+
+.chosen-game-img{
+    height: 70px;
+    float: right;
+}
+
+.chosen-game-name{
+    font-size: 40px;
+    font-weight: bold;
+
+}
+
+/*DROPDOWN CSS*/
+.dropbtn {
+    background-color: #b62020;
+    color: white;
+    padding: 17px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    height: 50px;
+    margin-top: 5px;
+    
+}
+
+    /* Dropdown button on hover & focus */
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #c63a3a;
+    }
+
+/* The search field */
+#myInput {
+    border-box: box-sizing;
+    width: 100%;
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+    /* The search field when it gets focus/clicked on */
+    #myInput:focus {
+        outline: 3px solid #ddd;
+    }
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f6f6f6;
+    width: 230px;
+    border: 1px solid #ddd;
+    z-index: 1;
+    
+}
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        cursor: pointer;
+    }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+.game-chooser-list {
+    overflow-y: scroll;
+    width: 230px;
+    max-height: 300px;
+}
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
+}

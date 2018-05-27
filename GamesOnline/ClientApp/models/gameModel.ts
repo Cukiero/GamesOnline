@@ -21,3 +21,25 @@ export interface GameCategoryExtended {
     name: string;
     count: number;
 }
+
+export interface Score {
+    id: number;
+    score: number;
+    game: Game;
+    date: Date;
+    isHighScore: number;
+}
+
+export interface HighScore {
+    id: number;
+    score: number;
+    gameId: number;
+    date: Date;
+    user: User;
+}
+
+export interface User {
+    userId: string;
+    userName: string;
+    avatarPath: string;
+}

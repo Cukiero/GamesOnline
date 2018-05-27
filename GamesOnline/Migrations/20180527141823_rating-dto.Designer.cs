@@ -12,8 +12,8 @@ using System;
 namespace GamesOnline.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180519165333_Game Ratins")]
-    partial class GameRatins
+    [Migration("20180527141823_rating-dto")]
+    partial class ratingdto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,8 @@ namespace GamesOnline.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("AvatarPath");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -161,8 +163,6 @@ namespace GamesOnline.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserName");
 
                     b.Property<string>("Comment");
 

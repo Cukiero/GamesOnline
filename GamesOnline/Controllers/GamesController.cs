@@ -148,7 +148,6 @@ namespace GamesOnline.Controllers
                         Comment = gameRatingModel.Comment,
                         Rating = gameRatingModel.Rating,
                         ApplicationUserId = user.Id,
-                        ApplicationUserName = user.UserName
                     };
                     _context.GameRatings.Add(gameRating);
                     await _context.SaveChangesAsync();
@@ -199,7 +198,22 @@ namespace GamesOnline.Controllers
         [HttpGet]
         public async Task<IActionResult> GetGameRatings(int gameId)
         {
-            var gameRatings = await _context.GameRatings.Where(g => g.GameId == gameId).OrderByDescending(d => d.Date).ToListAsync();
+            var gameRatings = await _context.GameRatings.Where(g => g.GameId == gameId).Include(g => g.ApplicationUser)
+                .Select(s => new GameRatingDto()
+                {
+                    Id = s.Id,
+                    GameId = s.GameId,
+                    Date = s.Date,
+                    Rating = s.Rating,
+                    Comment = s.Comment,
+                    User = new UserDto()
+                    {
+                        UserId = s.ApplicationUserId,
+                        UserName = s.ApplicationUser.UserName,
+                        AvatarPath = s.ApplicationUser.AvatarPath
+                    }
+                })
+                .OrderByDescending(d => d.Date).ToListAsync();
             if(gameRatings != null)
             {
                 return Ok(gameRatings);
