@@ -14,20 +14,30 @@
     overflow:visible;
 }
 
+@media (max-width: 767px) {
+    #game-chooser-container {
+        height: 150px;
+        overflow: visible;
+    }
+}
+
 .ranks-row {
     margin-top: 20px;
 }
 
 #global-rank-container {
     height: 650px;
+    margin-bottom: 10px;
 }
 
 #friends-rank-container {
     height: 650px;
+    margin-bottom: 10px;
 }
 
 #activities-container {
     height: 770px;
+    margin-bottom: 10px;
 }
 
 .rankings-container-name {
@@ -46,6 +56,7 @@
 }
 
 .score-image {
+    width: 100%;
 }
 .score-image-col{
     padding-right: 0;
@@ -71,6 +82,37 @@
 
 }
 
+@media (max-width: 767px) {
+    .chosen-game-name {
+        font-size: 40px;
+        font-weight: bold;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+.ranking-user-avatar {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+}
+
+.rank-number {
+    width: 35px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+#no-game-chosen-text{
+    font-size: 20px;
+    font-weight: bold;
+    white-space:nowrap;
+}
+
+
 /*DROPDOWN CSS*/
 .dropbtn {
     background-color: #b62020;
@@ -81,8 +123,7 @@
     cursor: pointer;
     border-radius: 3px;
     height: 50px;
-    margin-top: 5px;
-    
+    margin-top: 10px;
 }
 
     /* Dropdown button on hover & focus */

@@ -6,13 +6,14 @@
                     <div class="col-sm-12">
                         <div class="white-container" id="game-chooser-container">
                             <div class="row">
-                                <div class="col-xs-3">
-                                    <img class="img-responsive chosen-game-img" :src="chosenGame.imagePath" />
+                                <div class="col-xs-4 col-sm-3">
+                                    <img class="img-responsive img-rounded chosen-game-img" :src="chosenGame.imagePath" />
+                                    <span v-if="chosenGame.name == null" id="no-game-chosen-text">No game chosen</span>
                                 </div>
-                                <div class="col-xs-5">
+                                <div class="col-xs-8 col-sm-5">
                                     <div class="chosen-game-name">{{chosenGame.name}}</div>
                                 </div>
-                                <div class="col-xs-4">
+                                <div class="col-xs-12 col-sm-4">
                                     <div class="dropdown">
                                         <button @click="myFunction()" class="dropbtn">Choose game</button>
                                         <div id="myDropdown" class="dropdown-content">
@@ -45,9 +46,9 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(highScore, index) in gameHighScores">
-                                            <td>{{index+1}}</td>
-                                            <td>{{highScore.user.userName}}</td>
-                                            <td>{{highScore.score}}</td>
+                                            <td class="rank-number">{{index+1}}</td>
+                                            <td class="rank-username"><img :src="highScore.user.avatarPath" class="img-rounded ranking-user-avatar"/> {{highScore.user.userName}}</td>
+                                            <td class="rank-score">{{highScore.score}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

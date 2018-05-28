@@ -1,0 +1,25 @@
+﻿.profile-page {
+    margin: 50px;
+    margin-top: 100px;
+}
+
+@media(max-width: 1200px){
+    .profile-page {
+        margin: 5px;
+        margin-top: 50px;
+    }
+}
+
+.photo-change-btn {
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #b62020;
+    color: white;
+}
+
+.profile-avatar{
+    max-height: 200px;
+    margin: auto;
+}

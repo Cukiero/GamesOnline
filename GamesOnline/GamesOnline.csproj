@@ -34,6 +34,8 @@
     <None Remove="ClientApp\models\gameRatingModel.ts" />
     <None Remove="ClientApp\models\registrationModel.ts" />
     <None Remove="ClientApp\models\scoreModels.ts" />
+    <None Remove="ClientApp\vue-shim.d.ts" />
+    <None Remove="vue-shims.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -70,6 +72,7 @@
     <TypeScriptCompile Include="ClientApp\models\gameRatingModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\registrationModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\scoreModels.ts" />
+    <TypeScriptCompile Include="ClientApp\vue-shim.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -82,6 +85,10 @@
     <None Include="wwwroot\games\erykgame\inline.3d4a934ba9526037e96f.bundle.js" />
     <None Include="wwwroot\games\erykgame\main.5446671edf8ccbea7e5b.bundle.js" />
     <None Include="wwwroot\games\erykgame\polyfills.f20484b2fa4642e0dca8.bundle.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\media\avatars\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

@@ -34,7 +34,8 @@ export default class AuthService extends Vue {
         })
             .then(function (response) {
                 store.state.isAuthenticated = true;
-                store.state.username = response.data.username;
+                store.state.username = response.data.userName;
+                store.state.avatarPath = response.data.avatarPath;
                 return response.status;
             })
             .catch(function (error) {
@@ -49,11 +50,13 @@ export default class AuthService extends Vue {
         })
             .then(function (response) {
                 store.state.isAuthenticated = true;
-                store.state.username = response.data.username;
+                store.state.username = response.data.userName;
+                store.state.avatarPath = response.data.avatarPath;
             })
             .catch(function (error) {
                 store.state.isAuthenticated = false;
                 store.state.username = "";
+                store.state.avatarPath = "";
             });
     }
 
@@ -65,6 +68,7 @@ export default class AuthService extends Vue {
             .then(function (response) {
                 store.state.isAuthenticated = false;
                 store.state.username = "";
+                store.state.avatarPath = "";
             })
     }
 

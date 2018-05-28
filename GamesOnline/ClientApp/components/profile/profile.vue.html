@@ -1,9 +1,22 @@
 ﻿<template>
-    <div class="row">
-        <div class="col-sm-12">
+    <div>
+        <div v-if="isAuthenticated == true" class="row profile-page">
+            <div class="col-sm-2">
+                <div class="white-container profile-menu-cont">
+                    <img class="img-responsive profile-avatar" :src="avatarPath" />
+                    <input ref="photoInput" type="file" @change="onPhotoChange" accept="image/jpeg,image/png" style="display: none"></input>
+                    <button class="btn photo-change-btn" @click="$refs.photoInput.click()">Change photo</button>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="white-container profile-tab-cont">
 
+                </div>
+            </div>
         </div>
+        <div v-else="" style="font-size: 30px">You need to be logged in.</div>
     </div>
 </template>
 
 <script src="./profile.ts"></script>
+<style src="./profile.css"></style>

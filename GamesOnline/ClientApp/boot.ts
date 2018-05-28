@@ -1,7 +1,7 @@
 import './css/site.css';
 import 'bootstrap';
 import { authService } from './components/authentication/auth';
-import Vue from 'vue';
+import Vue from "vue";
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { ComponentOptions } from 'vue'
@@ -38,11 +38,13 @@ const store = new Vuex.Store({
     state: {
         isAuthenticated: false,
         username: "",
-        userid: ""
+        userid: "",
+        avatarPath: ""
     },
     getters: {
         isAuthenticated: state => state.isAuthenticated,
-        getUsername: state => state.username
+        getUsername: state => state.username,
+        getAvatarPath: state => state.avatarPath
     },
     mutations: {
         logIn(state) {
