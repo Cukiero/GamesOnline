@@ -52,6 +52,9 @@ const store = new Vuex.Store({
         },
         logOut(state) {
             state.isAuthenticated = false;
+        },
+        changeAvatarPath(state, newPath) {
+            state.avatarPath = newPath;
         }
     }
 });

@@ -1,8 +1,7 @@
 ﻿import axios from 'axios';
 import moment from 'moment';
-import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
-import { mapGetters } from 'vuex';
+import { Component, Vue } from 'vue-property-decorator';
+import { mapGetters, mapMutations } from 'vuex';
 
 @Component({
     computed: mapGetters({
@@ -16,16 +15,23 @@ import { mapGetters } from 'vuex';
                 return moment(String(value)).format('DD/MM/YYYY HH:mm');
             }
         }
-    } 
+    },
+    methods: mapMutations([
+        'changeAvatarPath'
+        ])
 })
 export default class ProfileComponent extends Vue {
 
     public image = {} as File;
 
+    mounted() {
+        var img = document.getElementById('profile-avatar') as HTMLImageElement;
+        img.src = img.src + "?" + new Date().getTime();
+    }
+
     public onPhotoChange(event: any) {
         var fd = new FormData();
         this.image = event.target.files[0];
-        alert(this.image.name);
         fd.append('image', this.image, this.image.name);
         axios({
             method: 'post',
@@ -34,7 +40,9 @@ export default class ProfileComponent extends Vue {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
             .then(response => {
-                alert(JSON.stringify(response.data))
+                var img = document.getElementById('profile-avatar') as HTMLImageElement;
+                img.src = response.data.avatarPath + "?" + new Date().getTime();
+                this.$store.commit('changeAvatarPath', response.data.avatarPath);
             })
             .catch(function (error) {
                 alert(error);

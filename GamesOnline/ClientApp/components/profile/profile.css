@@ -19,7 +19,17 @@
     color: white;
 }
 
-.profile-avatar{
+#profile-avatar{
     max-height: 200px;
     margin: auto;
+}
+
+.profile-menu-cont {
+    height: 770px;
+    margin-bottom: 10px;
+}
+
+.profile-tab-cont {
+    height: 770px;
+    margin-bottom: 10px;
 }

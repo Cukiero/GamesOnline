@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IdentityModel.Tokens.Jwt;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using GamesOnline.Models;
 using GamesOnline.Models.ViewModels;
@@ -15,10 +10,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.Drawing;
-using static System.Net.Mime.MediaTypeNames;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp.Processing.Transforms;
+using SixLabors.Primitives;
+
+
 
 namespace GamesOnline.Controllers
 {
@@ -76,19 +74,22 @@ namespace GamesOnline.Controllers
             {
                 await Logout();
                 var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, false);
-                var user = await _userManager.GetUserAsync(User);
 
-                if (result.Succeeded && user != null)
+                if (result.Succeeded)
                 {
-                    var userDto = new UserDto()
+                    var user = await _userManager.FindByNameAsync(model.Username);
+                    if(user != null)
                     {
-                        UserId = user.Id,
-                        UserName = user.UserName,
-                        AvatarPath = user.AvatarPath
-                    };
+                        var userDto = new UserDto()
+                        {
+                            UserId = user.Id,
+                            UserName = user.UserName,
+                            AvatarPath = user.AvatarPath
+                        };
 
-                    return Ok(userDto);
-
+                        return Ok(userDto);
+                    }
+                    return Ok();
                 }else {
                     return NotFound();
                 }
@@ -141,15 +142,27 @@ namespace GamesOnline.Controllers
                     {
                         
                         var extension = Path.GetExtension(image.FileName);
+                        if(extension != ".jpg")
+                        {
+                            return BadRequest();
+                        }
                         var fileName = user.UserName + extension;
                         var filePath = Path.Combine(uploads, fileName);
 
                         using (var fileStream = new FileStream(filePath, FileMode.Create))
                         {
                             await image.CopyToAsync(fileStream);
-                            user.AvatarPath = "/media/avatars/"+fileName;
+                            fileStream.Close();
+                            if(EditPhoto(filePath) == false)
+                            {
+                                System.IO.File.Delete(filePath);
+                                user.AvatarPath = "/media/avatar-example.jpg";
+                                await _userManager.UpdateAsync(user);
+                                return Ok(new { avatarPath = user.AvatarPath });
+                            }
+                            user.AvatarPath = "/media/avatars/" + fileName;
                             await _userManager.UpdateAsync(user);
-                            return Ok();
+                            return Ok(new { avatarPath = user.AvatarPath});
                         }
                     }
                 }
@@ -157,6 +170,42 @@ namespace GamesOnline.Controllers
             }
             return Unauthorized();
             
+        }
+
+        public Boolean EditPhoto(string filePath)
+        {
+            try
+            {
+                using (Image<Rgba32> image = Image.Load(filePath))
+                {
+                    var height = image.Height;
+                    var width = image.Width;
+                    if(height > width)
+                    {
+                        image.Mutate(x =>
+                        x.Crop(new SixLabors.Primitives.Rectangle(0, (height - width) / 2, width, width))
+                        .Resize(new Size(200, 200))
+                        );
+                    }else if(width > height)
+                    {
+                        image.Mutate(x =>
+                        x.Crop(new SixLabors.Primitives.Rectangle((width - height) / 2, 0, height, height))
+                        .Resize(new Size(200, 200))
+                        );
+                    }
+                    else
+                    {
+                        image.Mutate(x =>
+                        x.Resize(new Size(200, 200))
+                        );
+                    }
+                    image.Save(filePath);
+                }
+                return true;
+            }catch(FileNotFoundException ex)
+            {
+                return false;
+            }
         }
 
 

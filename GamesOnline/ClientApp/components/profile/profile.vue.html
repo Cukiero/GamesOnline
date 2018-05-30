@@ -3,8 +3,8 @@
         <div v-if="isAuthenticated == true" class="row profile-page">
             <div class="col-sm-2">
                 <div class="white-container profile-menu-cont">
-                    <img class="img-responsive profile-avatar" :src="avatarPath" />
-                    <input ref="photoInput" type="file" @change="onPhotoChange" accept="image/jpeg,image/png" style="display: none"></input>
+                    <img class="img-responsive img-rounded" id="profile-avatar" :src="avatarPath" />
+                    <input ref="photoInput" type="file" @change="onPhotoChange" accept="image/jpeg" style="display: none"></input>
                     <button class="btn photo-change-btn" @click="$refs.photoInput.click()">Change photo</button>
                 </div>
             </div>
