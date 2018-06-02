@@ -16,9 +16,12 @@ function ControlVersion()
 
 	try {
 		// version will be set for 7.X or greater players
-		axo = new ActiveXObject("ShockwaveFlash.ShockwaveFlash.7");
-		version = axo.GetVariable("$version");
-	} catch (e) {
+        axo = new ActiveXObject("ShockwaveFlash.ShockwaveFlash.7");
+        axo.AllowScriptAccess = "always";
+        version = axo.GetVariable("$version");
+        
+    } catch (e) {
+        
 	}
 
 	if (!version)

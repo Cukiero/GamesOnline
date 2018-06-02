@@ -16,6 +16,7 @@ namespace GamesOnline.Data
         }
 
         public DbSet<Friend> Friends { get; set; }
+        public DbSet<FriendInvite> FriendInvites { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<GameCategory> GameCategories { get; set; }
         public DbSet<GameScore> GameScores { get; set; }

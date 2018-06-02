@@ -51,8 +51,20 @@
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.latest-scores{
+.latest-scores {
     padding-top: 5px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-right: -15px;
+    margin-left: -15px;
+    height: 690px;
+}
+
+.rank-scores-container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 570px;
+    margin-right: -15px;
 }
 
 .score-image {
@@ -64,6 +76,8 @@
 }
 .score-row {
     margin-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 15px;
 }
 
 .latest-scores-hr{

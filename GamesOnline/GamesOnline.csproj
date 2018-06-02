@@ -32,6 +32,7 @@
     <None Remove="ClientApp\models\credentialsModel.ts" />
     <None Remove="ClientApp\models\gameModel.ts" />
     <None Remove="ClientApp\models\gameRatingModel.ts" />
+    <None Remove="ClientApp\models\profileModels.ts" />
     <None Remove="ClientApp\models\registrationModel.ts" />
     <None Remove="ClientApp\models\scoreModels.ts" />
     <None Remove="ClientApp\vue-shim.d.ts" />
@@ -71,6 +72,7 @@
     <TypeScriptCompile Include="ClientApp\models\credentialsModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\gameModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\gameRatingModel.ts" />
+    <TypeScriptCompile Include="ClientApp\models\profileModels.ts" />
     <TypeScriptCompile Include="ClientApp\models\registrationModel.ts" />
     <TypeScriptCompile Include="ClientApp\models\scoreModels.ts" />
     <TypeScriptCompile Include="ClientApp\vue-shim.d.ts" />

@@ -34,6 +34,12 @@ namespace GamesOnline.Controllers
         }
 
         [HttpGet]
+        public IActionResult EmojiRun()
+        {
+            return View("/Views/Home/EmojiRun.cshtml");
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetGames()
         {
             var games = await _context.Games.OrderByDescending(g => g.UserViews).Include(gr => gr.GameCategory).ToListAsync();
@@ -121,7 +127,7 @@ namespace GamesOnline.Controllers
                 await _context.SaveChangesAsync();
                 return Ok(isHighScore);
             }
-            return BadRequest(ModelState);
+            return BadRequest(Request.Body);
 
 
         }
