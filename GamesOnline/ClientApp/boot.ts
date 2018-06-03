@@ -1,7 +1,7 @@
 import './css/site.css';
 import 'bootstrap';
 import { authService } from './components/authentication/auth';
-import Vue from "vue";
+import { Component, Vue } from 'vue-property-decorator';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { ComponentOptions } from 'vue'

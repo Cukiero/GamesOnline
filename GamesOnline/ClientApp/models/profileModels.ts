@@ -1,14 +1,24 @@
-﻿export interface User {
-    userId: string;
-    userName: string;
-    avatarPath: string;
+﻿export interface Friend {
+    id: number;
+    userFriend: User;
+    date: Date;
+    isSender: boolean;
 }
 
-interface SocialFeed {
+export interface FriendInvite {
+    id: number;
+    inviter: User;
     date: Date;
 }
 
-class FriendInvites implements SocialFeed {
-    date = {} as Date;
+export interface UserInvite {
+    id: number;
+    userInvited: User;
+    date: Date;
+}
 
+export interface User {
+    userId: string;
+    userName: string;
+    avatarPath: string;
 }

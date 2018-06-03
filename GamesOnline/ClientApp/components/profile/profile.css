@@ -18,6 +18,9 @@
     background-color: #b62020;
     color: white;
 }
+    .photo-change-btn:hover {
+        color: white;
+    }
 
 #profile-avatar{
     max-height: 200px;
@@ -59,10 +62,207 @@
     color: white;
 }
 
-.invite-count{
+.invite-count {
     background-color: white;
     color: black;
     font-size: 15px;
     height: 20px;
     margin-top: -3px;
+    
+}
+
+.profile-friends-container{
+    overflow-x: hidden; 
+    overflow-y: scroll;
+    margin-right: -15px;
+    height: 690px;
+    
+}
+
+.friend-container {
+    height: 90px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 80px auto;
+}
+
+.friend-avatar {
+    height: 80px;
+    
+}
+
+.friend-info {
+    display: grid;
+    
+    grid-template-rows: 32px 20px 24px;
+}
+
+.friend-name {
+    padding-top: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.friend-date-since {
+    color: gray;
+    font-size: 11px;
+}
+
+.friend-remove-button {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.side-panel-invites {
+    margin-left: -10px;
+    margin-right: -15px;
+    overflow-y: scroll;
+    overflow-x: none;
+    height: 690px;
+}
+
+.friend-invite-container {
+    margin-top: 5px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: minmax(auto, 80px) auto;
+}
+
+.inviter-avatar {
+    max-height: 80px;
+    max-width: 80px;
+}
+
+.invite-info {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-rows: auto 26px;
+}
+
+.inviter-name {
+    text-align: left;
+    padding-right: 5px;
+}
+.invite-accept-btn{
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.profile-side-panel-hr {
+    margin-bottom: 3px;
+    margin-top: 5px;
+}
+
+.friend-history-text{
+    padding-right: 5px;
+}
+/*DROPDOWN CSS*/
+.users-dropdown-button {
+    background-color: #b62020;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: solid 1px white;
+    cursor: pointer;
+    border-radius: 3px;
+    height: 40px;
+    line-height: 38px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+    /* Dropdown button on hover & focus */
+    .users-dropdown-button:hover, .users-dropdown-button:focus {
+        background-color: #b62020;
+    }
+
+/* The search field */
+#userNameInput {
+    border-box: box-sizing;
+    width: 100%;
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    color: black;
+}
+
+    /* The search field when it gets focus/clicked on */
+    #userNameInput:focus {
+        outline: 3px solid #ddd;
+    }
+
+.invite-user-button {
+    cursor: pointer;
+    float: right;
+    background-color: #337ab7;
+    padding: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: -3px;
+    color: white;
+    border-radius: 3px;
+}
+
+.user-isfriend-label {
+    float: right;
+    background-color: #29b723;
+    padding: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: -3px;
+    color: white;
+    border-radius: 3px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.users-dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.users-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f6f6f6;
+    width: 300px;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+    /* Links inside the dropdown */
+    .users-dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        cursor: inherit;
+        font-size: 15px;
+    }
+
+        /* Change color of dropdown links on hover */
+        .users-dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+.users-list {
+    overflow-y: scroll;
+    width: 300px;
+    max-height: 400px;
+}
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
+}
+
+@media (max-width: 1500px) and (min-width:992px) {
+    .side-panel-name {
+        font-size: 18px;
+    }
 }

@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\games\arkanoid\dist\**" />
+    <Content Remove="wwwroot\games\arkanoid\dist\**" />
+    <EmbeddedResource Remove="wwwroot\games\arkanoid\dist\**" />
+    <None Remove="wwwroot\games\arkanoid\dist\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\20180527105758_avatar-dft.cs" />
     <Compile Remove="Migrations\20180527105758_avatar-dft.Designer.cs" />
   </ItemGroup>
@@ -79,7 +86,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\games\arkanoid\dist\breakout.min.js" />
     <None Include="wwwroot\games\arkanoid\src\bundle.js" />
     <None Include="wwwroot\games\arkanoid\src\bundle.js.map" />
     <None Include="wwwroot\games\EmojiRun\AC_RunActiveContent.js" />

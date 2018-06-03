@@ -1,24 +1,88 @@
 ﻿<template>
     <div>
         <div v-if="isAuthenticated == true" class="row profile-page">
-            <div class="col-sm-2">
+            <div class="col-sm-4 col-md-2">
                 <div class="white-container profile-menu-cont">
                     <img class="img-responsive img-rounded" id="profile-avatar" :src="avatarPath" />
                     <input ref="photoInput" type="file" @change="onPhotoChange" accept="image/jpeg" style="display: none"></input>
                     <button class="btn photo-change-btn" @click="$refs.photoInput.click()">Change photo</button>
                 </div>
             </div>
-            <div class="col-sm-7">
+            <div class="cols-sm-8 col-md-7">
                 <div class="white-container profile-tab-cont">
                     <div class="profile-cont-name">
                         Friends
+                        <div class="users-dropdown">
+                            <button @click="toggleUsersDropdown()" class="users-dropdown-button">Add Friends</button>
+                            <div id="usersDropdown" class="users-dropdown-content">
+                                <input type="text" placeholder="Search.." id="userNameInput" @keyup="filterUsers()">
+                                <div class="users-list">
+                                    <a v-for="user in users">
+                                        {{user.userName}}
+                                        <span v-if="isFriend(user.userId) == true" class="user-isfriend-label">Friends <span class="glyphicon glyphicon-ok"></span></span>
+                                        <span v-else-if="isInvited(user.userId) == true" class="invite-user-button">Invited <span class="glyphicon glyphicon-envelope"></span></span>
+                                        <span v-else="" class="invite-user-button" @click="inviteUser(user.userId, $event)">Invite</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-friends-container">
+                        <div class="row">
+                            <div v-for="friend in friends" class="col-md-6 friend-container">
+                                <img class="img-responsive img-rounded friend-avatar" :src="friend.userFriend.avatarPath" />
+                                <div class="friend-info">
+                                    <div class="friend-name">{{friend.userFriend.userName}}</div>
+                                    <div class="friend-date-since">Friends since {{friend.date | formatDate}}</div>
+                                    <div class="friend-buttons">
+                                    <button class="btn btn-default friend-remove-button" @click="removeFriend(friend.userFriend.userId)">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="cols-sm-12 col-md-3">
                 <div class="white-container profile-tab-cont">
-                    <div class="profile-cont-name">
-                        <a class="profile-feed-switch-link switch-link-active">History</a> | <a class="profile-feed-switch-link">Invites <span class="badge invite-count">11</span></a>
+                    <div class="profile-cont-name side-panel-name">
+                        <a class="profile-feed-switch-link" v-bind:class="{ 'switch-link-active': sidePanelData =='history'}" @click="viewHistory()">History</a> |
+                        <a class="profile-feed-switch-link" v-bind:class="{ 'switch-link-active': sidePanelData =='invites'}" @click="viewInvites()">Invites <span class="badge invite-count">{{friendInvites.length}}</span></a>
+                    </div>
+                    <div v-if="sidePanelData == 'invites'" class="side-panel-invites">
+                        <div v-for="invite in friendInvites">
+                            <div class="friend-invite-container">
+                                <img class="img-responsive img-rounded inviter-avatar " :src="invite.inviter.avatarPath" />
+                                <div class="invite-info">
+                                    <div class="inviter-name">
+                                        {{invite.inviter.userName}} sent you a friend request.
+                                    </div>
+                                    <div class="invite-buttons">
+                                        <button class="btn btn-default invite-accept-btn" @click="acceptInvite(invite.id)">Accept</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="profile-side-panel-hr" />
+                        </div>
+
+
+                    </div>
+                    <div v-if="sidePanelData == 'history'" class="side-panel-invites">
+                        <div v-for="friend in friends">
+                            <div class="friend-invite-container">
+                                <img class="img-responsive img-rounded inviter-avatar " :src="friend.userFriend.avatarPath" />
+                                <div class="friend-history-text" v-if="friend.isSender == true">
+                                    You and <b>{{friend.userFriend.userName}}</b> became friends on <small>{{friend.date | formatDate}}</small>
+                                </div>
+                                <div class="friend-history-text" v-if="friend.isSender == false">
+                                    <b>{{friend.userFriend.userName}}</b> has accepted your friend request on <small>{{friend.date | formatDate}}</small>
+                                </div>
+                            </div>
+                            <hr class="profile-side-panel-hr" />
+                        </div>
+
                     </div>
                 </div>
             </div>

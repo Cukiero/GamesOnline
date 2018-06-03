@@ -51,7 +51,7 @@ export default class RankingsComponent extends Vue {
                 break;
             }
         }
-        this.myFunction();
+        this.toggleDropdown();
         this.getGameHighScores(gameid);
     }
 
@@ -85,7 +85,7 @@ export default class RankingsComponent extends Vue {
 
     
 
-    public myFunction() {
+    public toggleDropdown() {
         var div = document.getElementById("myDropdown") as HTMLDivElement;
         div.classList.toggle("show");
     }
