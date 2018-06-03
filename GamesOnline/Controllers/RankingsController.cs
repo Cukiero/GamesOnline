@@ -71,7 +71,7 @@ namespace GamesOnline.Controllers
 
                 if(friends != null)
                 {
-                    var gameHighScores = await _context.GameHighScores.Where(g => g.GameId == gameId && friends.Contains(g.ApplicationUserId)).Include(g => g.ApplicationUser)
+                    var gameHighScores = await _context.GameHighScores.Where(g => g.GameId == gameId && (friends.Contains(g.ApplicationUserId) || g.ApplicationUserId == user.Id)).Include(g => g.ApplicationUser)
                 .Select(s => new GameHighScoreDto()
                 {
                     Id = s.Id,

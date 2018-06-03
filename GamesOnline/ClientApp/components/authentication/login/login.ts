@@ -17,6 +17,8 @@ export default class LoginComponent extends Vue {
             if (result) {
                 authService.login(this.user).then(status => {
                     if (status == 200) {
+                        this.user.Username = "";
+                        this.user.Password = "";
                         this.$router.push('/');
                     } else {
                         this.user.Password = "";

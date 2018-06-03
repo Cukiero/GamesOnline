@@ -48,7 +48,7 @@ namespace GamesOnline.Controllers
                         UserName = u.UserName,
                         AvatarPath = u.AvatarPath
                     })
-                    .OrderBy(u => u.UserName.ToLower()).ToListAsync();
+                    .Where(u => u.UserId != user.Id).OrderBy(u => u.UserName.ToLower()).ToListAsync();
 
                 if(users != null)
                 {
@@ -190,6 +190,10 @@ namespace GamesOnline.Controllers
 
             if(user != null)
             {
+                if(user.Id == friendId)
+                {
+                    return BadRequest();
+                }
                 var invitedUser = await _userManager.FindByIdAsync(friendId);
 
                 if (invitedUser != null)

@@ -18,6 +18,10 @@ export default class RegisterComponent extends Vue {
             if (result) {
                 authService.register(this.user).then(status => {
                     if (status == 201) {
+                        this.user.Username = "";
+                        this.user.Email = "";
+                        this.password_confirm = "";
+                        this.user.Password = "";
                         this.$router.push('/authentication/login');
                     } else {
                         this.user.Username = "";

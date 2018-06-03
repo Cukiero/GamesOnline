@@ -56,7 +56,7 @@ export default class ProfileComponent extends Vue {
             headers: { 'Content-Type': 'application/json' }
         })
             .then(response => {
-                el.innerText = "Invitation Sent";
+                el.innerHTML = "Invited <span class=\"glyphicon glyphicon-envelope\"></span>";
             })
             .catch(function (error) {
                 alert(error);
