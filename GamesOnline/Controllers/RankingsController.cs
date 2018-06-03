@@ -62,6 +62,50 @@ namespace GamesOnline.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> FriendsGameHighScores(int gameId)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if(user != null)
+            {
+                List<string> friends = await _context.Friends.Where(f => f.ApplicationUserId == user.Id).Select(f => f.ApplicationUserFriendId).ToListAsync();
+
+                if(friends != null)
+                {
+                    var gameHighScores = await _context.GameHighScores.Where(g => g.GameId == gameId && friends.Contains(g.ApplicationUserId)).Include(g => g.ApplicationUser)
+                .Select(s => new GameHighScoreDto()
+                {
+                    Id = s.Id,
+                    Score = s.Score,
+                    GameId = s.GameId,
+                    Date = s.Date,
+                    User = new UserDto()
+                    {
+                        UserId = s.ApplicationUserId,
+                        UserName = s.ApplicationUser.UserName,
+                        AvatarPath = s.ApplicationUser.AvatarPath
+                    }
+                })
+                .OrderByDescending(g => g.Score).ToListAsync();
+                    if (gameHighScores != null)
+                    {
+                        return Ok(gameHighScores);
+                    }
+                    else
+                    {
+                        return NoContent();
+                    }
+                }
+                else
+                {
+                    return NoContent();
+                }
+            }
+            return Unauthorized();
+
+            
+        }
+
+        [HttpGet]
         public async Task<IActionResult> UserScores()
         {
             var user = await _userManager.GetUserAsync(User);

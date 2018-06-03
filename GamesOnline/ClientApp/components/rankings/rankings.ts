@@ -1,6 +1,7 @@
 ﻿import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import { Game, GameCategory, GameCategoryExtended, Score, HighScore, User } from '../../models/gameModel';
+import { Friend } from '../../models/profileModels';
 import { mapGetters } from 'vuex';
 import axios from 'axios';
 import moment from 'moment';
@@ -23,6 +24,7 @@ export default class RankingsComponent extends Vue {
     public games: Game[] = [];
     public userScores: Score[] = [];
     public gameHighScores: HighScore[] = [];
+    public friendsGameHighScores: HighScore[] = [];
     public chosenGame = {} as Game;
 
     mounted() {
@@ -52,7 +54,8 @@ export default class RankingsComponent extends Vue {
             }
         }
         this.toggleDropdown();
-        this.getGameHighScores(gameid);
+        this.getFriendsGameHighScores(gameid);
+        this.getGameHighScores(gameid);    
     }
 
     public getUserScores() {
@@ -83,7 +86,20 @@ export default class RankingsComponent extends Vue {
             });
     }
 
-    
+    public getFriendsGameHighScores(gameid: number) {
+        axios({
+            method: 'get',
+            url: '/api/rankings/friendsgamehighscores',
+            params: { gameId: gameid },
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(response => {
+                this.friendsGameHighScores = response.data;
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+    }
 
     public toggleDropdown() {
         var div = document.getElementById("myDropdown") as HTMLDivElement;

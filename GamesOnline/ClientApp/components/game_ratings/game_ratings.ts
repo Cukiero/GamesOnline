@@ -29,6 +29,10 @@ export default class GameRatingsComponent extends Vue {
     public newGameRating = {} as NewGameRating;
     public currentRating: number = 0;
 
+    mounted() {
+        this.setRatingSystem();
+        this.getGameRatings();
+    }
 
     public setRatingSystem() {
         var self = this;
@@ -96,9 +100,6 @@ export default class GameRatingsComponent extends Vue {
             });
     }
 
-    mounted() {
-        this.setRatingSystem();
-        this.getGameRatings();
-    }
+    
 
 }

@@ -187,11 +187,32 @@ namespace GamesOnline.Controllers
                 var rating = await _context.GameRatings.SingleOrDefaultAsync(r => r.Id == ratingid);
                 if(rating != null)
                 {
+                    int gameId = rating.GameId;
                     if (rating.ApplicationUserId == user.Id)
                     {
-                        _context.GameRatings.Remove(rating);
-                        await _context.SaveChangesAsync();
-                        return Ok();
+                        var game = await _context.Games.SingleOrDefaultAsync(g => g.Id == gameId);
+
+                        if(game != null)
+                        {
+                            _context.GameRatings.Remove(rating);
+                            await _context.SaveChangesAsync();
+
+                            var game_ratings = await _context.GameRatings.Where(r => r.GameId == gameId).ToListAsync();
+                            if (game_ratings != null)
+                            {
+                                double sumof_ratings = 0;
+                                foreach (var g_rating in game_ratings)
+                                {
+                                    sumof_ratings += g_rating.Rating;
+                                }
+                                double avg_rating = sumof_ratings / (double)game_ratings.Count();
+                                avg_rating = Math.Round(avg_rating, 1);
+                                game.Rating = avg_rating;
+                                await _context.SaveChangesAsync();
+                            }
+                            return Ok();
+                        }
+                        return BadRequest();
                     }
                     return Unauthorized();
                 }

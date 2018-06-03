@@ -70,7 +70,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        <tr v-for="(highScore, index) in friendsGameHighScores">
+                                            <td class="rank-number">{{index+1}}</td>
+                                            <td class="rank-username"><img :src="highScore.user.avatarPath" class="img-rounded ranking-user-avatar" /> {{highScore.user.userName}}</td>
+                                            <td class="rank-score">{{highScore.score}}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
