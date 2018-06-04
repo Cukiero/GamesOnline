@@ -5,7 +5,7 @@
             <div v-if="isAuthenticated == true" class="add-rating-section">
                 <div class="media">
                     <div class="media-left">
-                        <img src="/media/avatar-example.jpg" class="media-object" style="width:80px">
+                        <img :src="avatarPath" class="media-object" style="width:80px">
                     </div>
                     <div class="media-body">
                         <div id="add-rating-stars-container">

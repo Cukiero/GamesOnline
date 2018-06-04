@@ -8,7 +8,8 @@ import moment from 'moment';
 @Component({
     computed: mapGetters({
         isAuthenticated: 'isAuthenticated',
-        username: 'getUsername'
+        username: 'getUsername',
+        avatarPath: 'getAvatarPath'
     }),
     filters: {
         formatDate (value: Date) {
