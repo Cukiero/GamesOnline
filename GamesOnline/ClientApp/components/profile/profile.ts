@@ -2,7 +2,9 @@
 import moment from 'moment';
 import { Component, Vue } from 'vue-property-decorator';
 import { mapGetters, mapMutations } from 'vuex';
-import { Friend, FriendInvite, UserInvite, User } from '../../models/profileModels';
+import { Friend, FriendInvite, UserInvite, User, PasswordChange, UserData } from '../../models/profileModels';
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
 
 @Component({
     computed: mapGetters({
@@ -24,19 +26,78 @@ import { Friend, FriendInvite, UserInvite, User } from '../../models/profileMode
 export default class ProfileComponent extends Vue {
 
     public image = {} as File;
+    public userData = {} as UserData;
     public friends: Friend[] = [];
     public friendInvites: FriendInvite[] = [];
     public userInvites: UserInvite[] = [];
     public users: User[] = [];
     public sidePanelData: string = "history";
+    public mainTabData: string = "friends";
+    public passwordChange = {} as PasswordChange;
+    public newPasswordConfirm: string = "";
+    public pwdChangeErrorMsg: string = "";
+    public pwdChangeSuccessMsg: string = "";
 
     mounted() {
         var img = document.getElementById('profile-avatar') as HTMLImageElement;
         img.src = img.src + "?" + new Date().getTime();
+        this.getUserData();
         this.getFriends();
         this.getFriendInvites();
         this.getUserInvites();
         this.getUsers();
+    }
+
+    public submitPasswordChange() {
+        this.$validator.validateAll().then(result => {
+            var self = this;
+            if (result) {
+                axios({
+                    method: 'post',
+                    url: '/api/account/changepassword',
+                    data: this.passwordChange,
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                    .then(function (response) {
+                        self.passwordChange.currentPassword = "";
+                        self.passwordChange.newPassword = "";
+                        self.newPasswordConfirm = "";
+                        self.pwdChangeErrorMsg = "";
+                        self.pwdChangeSuccessMsg = "Password succesfully changed.";
+                    })
+                    .catch(function (error) {
+                        self.passwordChange.currentPassword = "";
+                        self.passwordChange.newPassword = "";
+                        self.newPasswordConfirm = "";
+                        self.pwdChangeErrorMsg = "Wrong data.";
+                        self.pwdChangeSuccessMsg = "";
+                    });
+            } else {
+                this.pwdChangeErrorMsg = "Validation unssuccesfull.";
+                this.pwdChangeSuccessMsg = "";
+            }
+        });
+    }
+
+    public getUserData() {
+        axios({
+            method: 'get',
+            url: '/api/account/getuserdata',
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(response => {
+                this.userData = response.data;
+            })
+            .catch(function (error) {
+            });
+    }
+
+    public viewFriends() {
+        this.mainTabData = "friends";
+    }
+
+    public viewSettings() {
+        this.mainTabData = "settings";
     }
 
     public viewHistory() {
@@ -218,7 +279,7 @@ export default class ProfileComponent extends Vue {
         var div = document.getElementById("usersDropdown") as HTMLDivElement;
         a = div.getElementsByTagName("a");
         for (i = 0; i < a.length; i++) {
-            if (a[i].innerHTML.toUpperCase().indexOf(filter) == 0) {
+            if (a[i].innerText.toUpperCase().indexOf(filter) == 0) {
                 a[i].style.display = "";
             } else {
                 a[i].style.display = "none";

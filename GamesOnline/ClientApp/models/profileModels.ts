@@ -22,3 +22,14 @@ export interface User {
     userName: string;
     avatarPath: string;
 }
+
+export interface PasswordChange {
+    currentPassword: string;
+    newPassword: string;
+}
+
+export interface UserData {
+    userId: string;
+    userName: string;
+    email: string;
+}

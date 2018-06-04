@@ -1,6 +1,4 @@
-﻿import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
-import { Prop } from 'vue-property-decorator';
+﻿import { Component, Prop,  Vue } from 'vue-property-decorator';
 import { GameRating, NewGameRating } from '../../models/gameRatingModel';
 import { mapGetters } from 'vuex';
 import axios from 'axios';
@@ -84,8 +82,13 @@ export default class GameRatingsComponent extends Vue {
             });
     }
 
+    public hello() {
+        alert("hello");
+    }
+
     public deleteGameRating(ratingId: number) {
         var self = this;
+        
         axios({
             method: 'post',
             url: '/api/games/deletegamerating',
@@ -98,6 +101,7 @@ export default class GameRatingsComponent extends Vue {
             .catch(function (error) {
                 alert(error);
             });
+        
     }
 
     

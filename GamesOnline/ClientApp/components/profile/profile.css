@@ -32,6 +32,29 @@
     margin-bottom: 10px;
 }
 
+@media(max-width: 767px){
+    .profile-menu-cont {
+        height: 400px;
+    }
+}
+
+.profile-menu-pills{
+    margin-top: 30px;
+}
+.profile-menu-pills > li > a {
+    color: black;
+    cursor: pointer;
+}
+
+    .profile-menu-pills li.active a {
+        color: white;
+        background-color: #b62020;
+    }
+    .profile-menu-pills li.active a:hover {
+        color: white;
+        background-color: #b62020;
+    }
+
 .profile-tab-cont {
     height: 770px;
     margin-bottom: 10px;
@@ -77,6 +100,18 @@
     margin-right: -15px;
     height: 690px;
     
+}
+
+.profile-settings-container {
+    
+}
+
+.profile-settings-label {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: underline;
 }
 
 .friend-container {
@@ -132,7 +167,7 @@
 
 .inviter-avatar {
     max-height: 80px;
-    max-width: 80px;
+    
 }
 
 .invite-info {
@@ -264,5 +299,14 @@
 @media (max-width: 1500px) and (min-width:992px) {
     .side-panel-name {
         font-size: 18px;
+    }
+}
+
+@media (max-width: 500px) {
+    .users-dropdown-content {
+        width: 250px;
+    }
+    .users-list {
+        width: 250px;
     }
 }

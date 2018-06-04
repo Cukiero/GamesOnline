@@ -127,6 +127,47 @@ namespace GamesOnline.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> ChangePassword([FromBody] PasswordChangeDto passwordChangeDto)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if(user != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    var changeResult = await _userManager.ChangePasswordAsync(user, passwordChangeDto.currentPassword, passwordChangeDto.newPassword);
+
+                    if (changeResult.Succeeded)
+                    {
+                        return Ok();
+                    }
+                }
+                return BadRequest();
+            }
+            return Unauthorized();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUserData()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if(user != null)
+            {
+                var userData = new UserDataDto()
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    Email = user.Email
+                };
+
+                return Ok(userData);
+            }
+            return Unauthorized();
+        }
+
+
+        [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> ChangePhoto([FromForm] IFormFile image)
         {
@@ -228,6 +269,23 @@ namespace GamesOnline.Controllers
 
             [Required]
             public string Password { get; set; }
+        }
+
+        public class PasswordChangeDto
+        {
+            [Required]
+            public string currentPassword { get; set; }
+            [Required]
+            public string newPassword { get; set; }
+        }
+
+        public class UserDataDto
+        {
+            
+            public string UserId { get; set; }
+            
+            public string UserName { get; set; }
+            public string Email { get; set; }
         }
     }
 }

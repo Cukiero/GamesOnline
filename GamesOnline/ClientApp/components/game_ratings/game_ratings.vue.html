@@ -30,7 +30,10 @@
                         <img :src="rating.user.avatarPath" class="media-object" style="width:60px">
                     </div>
                     <div class="media-body">
-                        <h5 class="media-heading"><img :src="'/media/stars/'+rating.rating*2+'.png'" style="height:20px" /><span> on {{ rating.date | formatDate }} by {{rating.user.userName}}</span><a v-if="username == rating.user.userName" @click="deleteGameRating(rating.id)" class="remove-rating-link">Remove</a></h5>
+                        <h5 class="media-heading"><img :src="'/media/stars/'+rating.rating*2+'.png'" style="height:20px" />
+                            <span> on {{ rating.date | formatDate }} by {{rating.user.userName}}</span>
+                            <a  v-if="username == rating.user.userName" @click="deleteGameRating(rating.id)"  class="remove-rating-link">Remove</a>
+                        </h5>
                         <div class="user-rating-comment">
                             {{rating.comment}}
                         </div>

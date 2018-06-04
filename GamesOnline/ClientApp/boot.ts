@@ -4,12 +4,12 @@ import { authService } from './components/authentication/auth';
 import { Component, Vue } from 'vue-property-decorator';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import { ComponentOptions } from 'vue'
+
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
-let options: ComponentOptions<Vue>;
+
 
 const routes = [
     { path: '/', component: require('./components/home/home.vue.html') },

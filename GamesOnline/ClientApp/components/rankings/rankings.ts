@@ -97,7 +97,6 @@ export default class RankingsComponent extends Vue {
                 this.friendsGameHighScores = response.data;
             })
             .catch(function (error) {
-                alert(error);
             });
     }
 

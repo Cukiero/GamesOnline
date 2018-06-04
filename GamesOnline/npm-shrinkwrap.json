@@ -4587,6 +4587,48 @@
         "repeat-string": "1.6.1"
       }
     },
+    "ts-loader": {
+      "version": "4.3.1",
+      "resolved": "https://registry.npmjs.org/ts-loader/-/ts-loader-4.3.1.tgz",
+      "integrity": "sha1-NFKY35pQGb56PobNe4sa7+9LvXk=",
+      "dev": true,
+      "requires": {
+        "chalk": "2.4.1",
+        "enhanced-resolve": "4.0.0",
+        "loader-utils": "1.1.0",
+        "micromatch": "3.1.10",
+        "semver": "5.5.0"
+      },
+      "dependencies": {
+        "enhanced-resolve": {
+          "version": "4.0.0",
+          "resolved": "https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-4.0.0.tgz",
+          "integrity": "sha512-jox/62b2GofV1qTUQTMPEJSDIGycS43evqYzD/KVtEb9OCoki9cnacUPxCrZa7JfPzZSYOCZhu9O9luaMxAX8g==",
+          "dev": true,
+          "requires": {
+            "graceful-fs": "4.1.11",
+            "memory-fs": "0.4.1",
+            "tapable": "1.0.0"
+          }
+        },
+        "memory-fs": {
+          "version": "0.4.1",
+          "resolved": "https://registry.npmjs.org/memory-fs/-/memory-fs-0.4.1.tgz",
+          "integrity": "sha1-OpoguEYlI+RHz7x+i7gO1me/xVI=",
+          "dev": true,
+          "requires": {
+            "errno": "0.1.7",
+            "readable-stream": "2.3.6"
+          }
+        },
+        "tapable": {
+          "version": "1.0.0",
+          "resolved": "https://registry.npmjs.org/tapable/-/tapable-1.0.0.tgz",
+          "integrity": "sha512-dQRhbNQkRnaqauC7WqSJ21EEksgT0fYZX2lqXzGkpo8JNig9zGZTYoMGvyI2nWmXlE2VSVXVDu7wLVGu/mQEsg==",
+          "dev": true
+        }
+      }
+    },
     "tty-browserify": {
       "version": "0.0.0",
       "resolved": "https://registry.npmjs.org/tty-browserify/-/tty-browserify-0.0.0.tgz",
@@ -4925,6 +4967,11 @@
       "resolved": "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz",
       "integrity": "sha1-3EJpcTMwLOMBdSQ1amxht7abShg=",
       "dev": true
+    },
+    "vuejs-dialog": {
+      "version": "0.9.0",
+      "resolved": "https://registry.npmjs.org/vuejs-dialog/-/vuejs-dialog-0.9.0.tgz",
+      "integrity": "sha512-nVWy+S9SCS95ECtvd3jZ978PHUx/zlMUg8kJ9ckmas7xPTIt2p5ZtRKwTwcQ173X4IhryBiUOVJYTBQyrabw5Q=="
     },
     "vuex": {
       "version": "https://registry.npmjs.org/vuex/-/vuex-3.0.1.tgz",

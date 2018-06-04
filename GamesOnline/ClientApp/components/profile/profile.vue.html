@@ -3,14 +3,21 @@
         <div v-if="isAuthenticated == true" class="row profile-page">
             <div class="col-sm-4 col-md-2">
                 <div class="white-container profile-menu-cont">
+
                     <img class="img-responsive img-rounded" id="profile-avatar" :src="avatarPath" />
                     <input ref="photoInput" type="file" @change="onPhotoChange" accept="image/jpeg" style="display: none"></input>
                     <button class="btn photo-change-btn" @click="$refs.photoInput.click()">Change photo</button>
+
+                    <ul class="nav nav-pills nav-stacked profile-menu-pills">
+                        <li v-bind:class="{active: mainTabData == 'friends'}"><a @click="viewFriends"><span class="glyphicon glyphicon-heart"></span> Friends</a></li>
+                        <li v-bind:class="{active: mainTabData == 'settings'}"><a @click="viewSettings"><span class="glyphicon glyphicon-cog"></span>  Settings</a></li>
+                    </ul>
+
                 </div>
             </div>
             <div class="cols-sm-8 col-md-7">
                 <div class="white-container profile-tab-cont">
-                    <div class="profile-cont-name">
+                    <div v-if="mainTabData == 'friends'" class="profile-cont-name">
                         Friends
                         <div class="users-dropdown">
                             <button @click="toggleUsersDropdown()" class="users-dropdown-button">Add Friends</button>
@@ -28,23 +35,75 @@
                             </div>
                         </div>
                     </div>
-                    <div class="profile-friends-container">
+                    <div v-if="mainTabData == 'friends'" class="profile-friends-container">
                         <div class="row">
-                            <div v-for="friend in friends" class="col-md-6 friend-container">
+                            <div v-for="friend in friends" class="col-lg-6 friend-container">
                                 <img class="img-responsive img-rounded friend-avatar" :src="friend.userFriend.avatarPath" />
                                 <div class="friend-info">
                                     <div class="friend-name">{{friend.userFriend.userName}}</div>
                                     <div class="friend-date-since">Friends since {{friend.date | formatDate}}</div>
                                     <div class="friend-buttons">
-                                    <button class="btn btn-default friend-remove-button" @click="removeFriend(friend.userFriend.userId)">Remove</button>
+                                        <button class="btn btn-default friend-remove-button" @click="removeFriend(friend.userFriend.userId)">Remove</button>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
+                    <div v-if="mainTabData == 'settings'" class="profile-cont-name">
+                        Settings
+                    </div>
+                    <div v-if="mainTabData == 'settings'" class="row profile-settings-container">
+                        <div class="col-md-6">
+                            <div class="profile-settings-label">Your data:</div>
+                            <div class="form-group">
+                                <label for="Username">Login</label>
+                                <input type="text"
+                                        name="Username"
+                                        class="form-control"
+                                        :value="userData.userName" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="Email">Email</label>
+                                <input type="text"
+                                        name="Email"
+                                        class="form-control"
+                                        :value="userData.email" disabled>
+                            </div>
+                            <div class="profile-settings-label">Password change form:</div>
+                            <div class="form-group">
+                                <input type="password"
+                                        name="CurrentPassword"
+                                        class="form-control"
+                                        placeholder="Enter your current password"
+                                        v-model="passwordChange.currentPassword"
+                                        v-validate="{ required: true, regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d !#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{6,}$/}">
+                            </div>
+                            <div class="form-group">
+                                <input type="password"
+                                        name="NewPassword"
+                                        class="form-control"
+                                        placeholder="Enter your new password"
+                                        v-model="passwordChange.newPassword"
+                                        v-validate="{ required: true, regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d !#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{6,}$/}">
+                                <span v-show="errors.has('NewPassword')" class="text-danger">Password must contain at least one letter, one number and min. 6 characters.</span>
+                            </div>
+                            <div class="form-group">
+                                <input type="password"
+                                        name="NewPasswordConf"
+                                        class="form-control"
+                                        placeholder="Confirm your new password"
+                                        v-model="newPasswordConfirm"
+                                        v-validate="{is: passwordChange.newPassword}">
+                                <span v-show="errors.has('NewPasswordConf')" class="text-danger">Passwords don't match.</span>
+                            </div>
+                            <div class="btn btn-primary" @click="submitPasswordChange">Change password</div>
+                            <span class="text-danger">{{ pwdChangeErrorMsg }}</span>
+                            <span class="text-success">{{ pwdChangeSuccessMsg }}</span>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-            </div>
             <div class="cols-sm-12 col-md-3">
                 <div class="white-container profile-tab-cont">
                     <div class="profile-cont-name side-panel-name">
@@ -87,7 +146,7 @@
                 </div>
             </div>
         </div>
-        <div v-else="" style="font-size: 30px">You need to be logged in.</div>
+        <div v-else="" style="font-size: 30px" class="row profile-page">You need to be logged in.</div>
     </div>
 </template>
 
