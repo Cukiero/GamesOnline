@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace GamesOnline
 {
@@ -63,6 +64,10 @@ namespace GamesOnline
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            var options = new RewriteOptions()
+                .AddRedirectToHttpsPermanent();
+
+            app.UseRewriter(options);
             app.UseAuthentication();
             app.UseStaticFiles();
 

@@ -83,7 +83,7 @@ namespace GamesOnline.Controllers
                         },
                         Date = f.Date,
                         isSender = f.isSender
-                    }).OrderByDescending(f => f.UserFriend.UserName).ToListAsync();
+                    }).OrderByDescending(f => f.Date).ToListAsync();
                 if(friends != null)
                 {
                     return Ok(friends);
@@ -203,20 +203,65 @@ namespace GamesOnline.Controllers
 
                     if (invitationFromMe == null && invitationToMe == null)
                     {
-                        _context.FriendInvites.Add(new FriendInvite()
+                        var newInvite = new FriendInvite()
                         {
                             ApplicationUserId = user.Id,
                             ApplicationUserInvitedId = invitedUser.Id,
                             Date = DateTime.Now
-                        });
+                        };
+
+                        _context.FriendInvites.Add(newInvite);
+
                         await _context.SaveChangesAsync();
+                        return Ok(new UserInviteDto() {
+                            Id = newInvite.Id,
+                            UserInvited = new UserDto()
+                            {
+                                UserId = invitedUser.Id,
+                                UserName = invitedUser.UserName,
+                                AvatarPath = invitedUser.AvatarPath
+                            },
+                            Date = newInvite.Date
+                        });
                     }
-                    return Ok();
+                    return BadRequest();
                 }
                 return BadRequest();
             }
             return Unauthorized();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UnInviteFriend(string friendId)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user != null)
+            {
+                if (user.Id == friendId)
+                {
+                    return BadRequest();
+                }
+                var invitedUser = await _userManager.FindByIdAsync(friendId);
+
+                if (invitedUser != null)
+                {
+                    var invitationFromMe = await _context.FriendInvites.SingleOrDefaultAsync(f => f.ApplicationUserId == user.Id && f.ApplicationUserInvitedId == invitedUser.Id);
+
+                    if (invitationFromMe != null)
+                    {
+                        _context.FriendInvites.Remove(invitationFromMe);
+                        await _context.SaveChangesAsync();
+                        return Ok();
+                    }
+                    return BadRequest();
+                }
+                return BadRequest();
+            }
+            return Unauthorized();
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> AcceptFriendInvite(int inviteId)

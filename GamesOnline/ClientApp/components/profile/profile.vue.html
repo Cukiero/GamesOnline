@@ -27,7 +27,7 @@
                                     <a v-for="user in users">
                                         {{user.userName}}
                                         <span v-if="isFriend(user.userId) == true" class="user-isfriend-label">Friends <span class="glyphicon glyphicon-ok"></span></span>
-                                        <span v-else-if="isInvited(user.userId) == true" class="invite-user-button">Invited <span class="glyphicon glyphicon-envelope"></span></span>
+                                        <span v-else-if="isInvited(user.userId) == true" @click="unInviteUser(user.userId, $event)" class="invite-user-button">Invited <span class="glyphicon glyphicon-envelope"></span></span>
                                         <span v-else="" class="invite-user-button" @click="inviteUser(user.userId, $event)">Invite</span>
                                     </a>
                                 </div>

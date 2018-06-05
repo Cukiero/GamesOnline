@@ -117,10 +117,24 @@ export default class ProfileComponent extends Vue {
             headers: { 'Content-Type': 'application/json' }
         })
             .then(response => {
-                el.innerHTML = "Invited <span class=\"glyphicon glyphicon-envelope\"></span>";
+                this.userInvites.push(response.data);
             })
             .catch(function (error) {
-                alert(error);
+            });
+    }
+
+    public unInviteUser(userId: string, event: Event) {
+        var el = event.target as HTMLSpanElement;
+        axios({
+            method: 'post',
+            url: '/api/friends/uninvitefriend',
+            params: { friendId: userId },
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(response => {
+                this.removeUserInviteFromList(userId);
+            })
+            .catch(function (error) {
             });
     }
 
@@ -187,6 +201,14 @@ export default class ProfileComponent extends Vue {
         this.friendInvites.forEach((invite, index) => {
             if (invite.id == inviteId) {
                 this.friendInvites.splice(index, 1);
+            }
+        })
+    }
+
+    public removeUserInviteFromList(userId: string) {
+        this.userInvites.forEach((invite, index) => {
+            if (invite.userInvited.userId == userId) {
+                this.userInvites.splice(index, 1);
             }
         })
     }
