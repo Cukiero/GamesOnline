@@ -5,3 +5,18 @@
     border-radius: 5px;
     box-shadow: -40px 0 200px 10px rgb(182, 32, 32), 40px 0 200px 10px rgb(182, 32, 32);
 }
+
+#on-mobile-info{
+    margin-top: 50px;
+    display: none;
+}
+
+@media(max-width: 800px){
+    #gameframe {
+        display: none;
+    }
+
+    #on-mobile-info {
+        display: block;
+    }
+}

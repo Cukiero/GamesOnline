@@ -1,6 +1,7 @@
 ﻿<template>
     <div>
         <iframe  id="gameframe" :src="gamepath" @load="setIframeSize()"></iframe>
+        <div id="on-mobile-info">You can't play this game on a phone.</div>
         <!--@load="setIframeHeight()"-->
         <div><game_ratings v-if="gameid != 0" :gameid="gameid"></game_ratings></div>
     </div>
