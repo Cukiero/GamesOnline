@@ -102,12 +102,14 @@ var Key;
     Key[Key["Space"] = 32] = "Space";
     Key[Key["Left"] = 37] = "Left";
     Key[Key["Right"] = 39] = "Right";
+    Key[Key["Enter"] = 13] = "Enter";
 })(Key = exports.Key || (exports.Key = {}));
 var GameStatus;
 (function (GameStatus) {
     GameStatus[GameStatus["Play"] = 0] = "Play";
     GameStatus[GameStatus["Win"] = 1] = "Win";
     GameStatus[GameStatus["Loss"] = 2] = "Loss";
+    GameStatus[GameStatus["Lvl"] = 3] = "Lvl";
 })(GameStatus = exports.GameStatus || (exports.GameStatus = {}));
 
 
@@ -133,6 +135,8 @@ var Playground = /** @class */ (function () {
         this.width = opts.screen.width;
         this.height = opts.screen.height;
         this.autoPlay = opts.autoPlay;
+        this.counterLvl = 0;
+        this.letEndGame = false;
         this.createCanvas();
         this.createPaddle();
         this.createBall();
@@ -165,11 +169,40 @@ var Playground = /** @class */ (function () {
         var opts = this.options;
         this.ball = new ball_1.Ball(this.ctx, 0, 0, this.options.ball);
         this.moveBallToPaddleCenter();
-        this.ballXStep = 6;
+        this.ballXStep = 5;
         this.ballYStep = -this.ballXStep;
     };
     Playground.prototype.createBricks = function () {
         var bricks = [], brickOpts = this.options.brick, width = brickOpts.width, height = brickOpts.height;
+        switch (this.counterLvl) {
+            case 0: {
+                brickOpts.fill = ['#0c0b0b'];
+                break;
+            }
+            case 1: {
+                brickOpts.fill = ['#665b5b', '#0c0b0b'];
+                break;
+            }
+            case 2: {
+                brickOpts.fill = ['#c6baba', '#665b5b', '#0c0b0b'];
+                break;
+            }
+            case 3: {
+                brickOpts.fill = ['#c6baba', '#665b5b', '#0c0b0b', '#ff6060',];
+                break;
+            }
+            default: {
+                brickOpts.fill = ['#c6baba', '#665b5b', '#0c0b0b', '#ff6060', '#f20000'];
+                break;
+            }
+        }
+        if (this.ballXStep >= 0)
+            this.ballXStep += 1;
+        else
+            this.ballXStep = this.ballXStep - 1;
+        this.ballYStep = -this.ballXStep;
+        console.log(this.ballXStep);
+        this.counterLvl++;
         var offsetX = 50, offsetY = 70, gap = 25, rows = Math.round((this.height * 0.35) / (height + gap)), cols = Math.round((this.width - offsetX * 2) / (width + gap));
         var x = offsetX, y = offsetY;
         for (var i = 0; i < rows; ++i) {
@@ -220,6 +253,12 @@ var Playground = /** @class */ (function () {
         }
         ball.draw();
     };
+    Playground.prototype.nextLvl = function () {
+        this.gameStatus = enums_1.GameStatus.Play;
+        this.createBricks();
+        this.movePaddleToCenter();
+        this.captureBall(!this.autoPlay);
+    };
     Playground.prototype.drawBricks = function () {
         var bricks = this.bricks, bricksLen = this.bricksLen, brick;
         var activeBlocks = false;
@@ -231,7 +270,8 @@ var Playground = /** @class */ (function () {
             }
         }
         if (!activeBlocks) {
-            this.gameStatus = enums_1.GameStatus.Win;
+            this.gameStatus = enums_1.GameStatus.Lvl;
+            //this.gameStatus = GameStatus.Win;
         }
     };
     Playground.prototype.drawStatus = function () {
@@ -251,20 +291,27 @@ var Playground = /** @class */ (function () {
         });
         console.log(this.status.score);
     };
+    Playground.prototype.getXY = function (canvas, event) {
+        var rect = canvas.getBoundingClientRect();
+        var y = event.clientY - rect.top;
+        var x = event.clientX - rect.left;
+        return { x: x, y: y };
+    };
     Playground.prototype.drawGameEnd = function () {
-        var ctx = this.ctx, opts = this.options, text = this.gameStatus === enums_1.GameStatus.Win ? 'Well Done!' : 'You Lose';
-        // Cover
-        ctx.fillStyle = 'white';
-        ctx.globalAlpha = 0.7;
-        ctx.fillRect(0, 0, this.width, this.height);
-        // Text
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = opts.status.fill;
+        var ctx = this.ctx, opts = this.options, text = this.gameStatus === enums_1.GameStatus.Lvl ? 'Lvl up!' : 'Game Over, press Enter to start a new game!';
         ctx.font = '30px sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(text, Math.round(this.width / 2), Math.round(this.height / 2));
-        this.saveScore(this.status.score);
+        ctx.fillText(text, Math.round(this.width / 2), Math.round((this.height / 3) * 2));
+        if (this.gameStatus !== enums_1.GameStatus.Loss)
+            this.myFunction();
+        else {
+            this.letEndGame = true;
+            console.log(this.letEndGame);
+        }
+    };
+    Playground.prototype.myFunction = function () {
+        setTimeout(this.nextLvl(), 1000);
     };
     Playground.prototype.movePaddle = function (x) {
         var paddle = this.paddle;
@@ -353,6 +400,7 @@ var Playground = /** @class */ (function () {
             }
             else {
                 this.gameStatus = enums_1.GameStatus.Loss;
+                this.saveScore(this.status.score);
                 logger_1.logger.log('Game over');
             }
             status_2.decreaseLife();
@@ -687,15 +735,17 @@ var Game = /** @class */ (function () {
         canvas.addEventListener('click', this.onMouseClick);
         window.addEventListener('keydown', this.onKeyDown);
         window.addEventListener('keyup', this.onKeyUp);
-        var FPS = 50;
-        this.frameId = setInterval(this.onNewFrame, 1000 / FPS);
+        var FPS = 60;
+        this.frameId = setInterval(this.onNewFrame, 1200 / FPS);
     };
     Game.prototype.stopGame = function () {
         var canvas = this.canvas;
         canvas.removeEventListener('mousemove', this.onMouseMove);
         canvas.removeEventListener('click', this.onMouseClick);
-        window.removeEventListener('keydown', this.onKeyDown);
-        window.removeEventListener('keyup', this.onKeyUp);
+        if (this.playground.letEndGame != true) {
+            window.removeEventListener('keydown', this.onKeyDown);
+            window.removeEventListener('keyup', this.onKeyUp);
+        }
         clearInterval(this.frameId);
     };
     Game.prototype.onNewFrame = function () {
@@ -724,6 +774,11 @@ var Game = /** @class */ (function () {
         if (key === enums_1.Key.Space) {
             this.playground.captureBall();
         }
+        if ((key === enums_1.Key.Enter && this.playground.letEndGame == true)) {
+            this.restart();
+            this.createPlaygroud();
+            this.newGame();
+        }
     };
     Game.prototype.onKeyUp = function (event) {
         var key = utils_1.getKeyCode(event);
@@ -735,6 +790,10 @@ var Game = /** @class */ (function () {
         this.playground = null;
         this.options = null;
         this.parent = null;
+    };
+    Game.prototype.restart = function () {
+        this.stopGame();
+        this.playground.destroy();
     };
     Game.defaultOptions = {
         screen: {
@@ -755,7 +814,8 @@ var Game = /** @class */ (function () {
         brick: {
             width: 90,
             height: 20,
-            fill: ['#c6baba', '#665b5b', '#0c0b0b']
+            fill: ['#c6baba']
+            //fill: ['#c6baba', '#665b5b', '#0c0b0b']
         },
         status: {
             fill: 'black',
